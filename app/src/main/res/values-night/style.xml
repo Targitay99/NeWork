@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="like">like</string>
+    <string name="mention">mention</string>
+    <string name="speakers">Speakers</string>
+    <string name="participate">Participate</string>
+</resources>
