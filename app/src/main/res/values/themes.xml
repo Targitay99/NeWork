@@ -1,22 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.NeWork" parent="Theme.MaterialComponents.DayNight">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-
-    <item name="colorPrimary">#03A9F4</item>
-    <item name="colorPrimaryVariant">#03A9F4</item>
-    <item name="colorOnPrimary">@color/gray</item>
-    <!-- Secondary brand color. -->
-    <item name="colorSecondary">@color/blue_700</item>
-    <item name="colorSecondaryVariant">@color/red_700</item>
-    <item name="colorOnSecondary">@color/black</item>
-    <!-- Status bar color. -->
-    <item name="android:statusBarColor">#03A9F4</item>
-    <!-- Customize your theme here. -->
-    <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
-
-</style>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_500</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/blue_700</item>
+        <item name="colorSecondaryVariant">@color/red_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/purple_700</item>
+        <!-- Customize your theme here. -->
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+    </style>
 
 
 
@@ -25,7 +22,7 @@
 <item name="colorPrimary">@color/white</item>
 <item name="colorPrimaryVariant">@color/white</item>
 <item name="colorOnPrimary">@color/white</item>
-<!-- Secondary brand color. -->
+<!-- Secondary brand color. -->я
 <item name="colorSecondary">@color/white</item>
 <item name="colorSecondaryVariant">@color/white</item>
 <item name="colorOnSecondary">@color/white</item>

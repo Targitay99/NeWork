@@ -68,7 +68,7 @@ class AppActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.nav_posts,
-                R.id.nav_users,
+                R.id.nav_user,
                 R.id.nav_events,
                 R.id.nav_profile,
                 -> {
@@ -83,7 +83,7 @@ class AppActivity : AppCompatActivity() {
   //    val appBarConfiguration = AppBarConfiguration(
   //        setOf(
   //            R.id.nav_posts,
-  //            R.id.nav_users,
+  //            R.id.nav_user,
   //            R.id.nav_events,
   //        )
   //    )

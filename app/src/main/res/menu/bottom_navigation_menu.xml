@@ -7,7 +7,7 @@
         android:title="@string/title_posts" />
 
     <item
-        android:id="@+id/nav_users"
+        android:id="@+id/nav_user"
         android:icon="@drawable/baseline_people_24"
         android:title="@string/title_users" />
 

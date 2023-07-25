@@ -78,7 +78,7 @@ class PostsFragment : Fragment() {
                     val bundle = Bundle().apply {
                         putString("open", "mention")
                     }
-                    findNavController().navigate(R.id.nav_users, bundle)
+                    findNavController().navigate(R.id.nav_user, bundle)
                 } else {
                     Toast.makeText(activity, R.string.error_auth, Toast.LENGTH_SHORT)
                         .show()
