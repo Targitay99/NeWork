@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/nav_posts"
-        android:icon="@drawable/baseline_content_paste_24"
+        android:icon="@drawable/icon_content"
         android:title="@string/title_posts" />
 
     <item
         android:id="@+id/nav_user"
-        android:icon="@drawable/baseline_people_24"
+        android:icon="@drawable/icon_users"
         android:title="@string/title_users" />
 
     <item
