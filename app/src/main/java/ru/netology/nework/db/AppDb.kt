@@ -14,7 +14,7 @@ import ru.netology.nework.utils.Converters
         EventEntity::class,
         EventRemoteKeyEntity::class,
         UserEntity::class,
-//        JobEntity::class,
+        JobEntity::class,
     ],
     version = 11,
     exportSchema = false
@@ -27,5 +27,5 @@ abstract class AppDb : RoomDatabase() {
     abstract fun eventDao(): EventDao
     abstract fun eventRemoteKeyDao(): EventRemoteKeyDao
     abstract fun userDao(): UserDao
- //   abstract fun jobDao(): JobDao
+    abstract fun jobDao(): JobDao
 }

@@ -49,8 +49,8 @@ object DbModule {
         appDb: AppDb,
     ): UserDao = appDb.userDao()
 
- //   @Provides
- //   fun provideJobDao(
- //       appDb: AppDb,
- //   ): JobDao = appDb.jobDao()
+    @Provides
+    fun provideJobDao(
+        appDb: AppDb,
+    ): JobDao = appDb.jobDao()
 }

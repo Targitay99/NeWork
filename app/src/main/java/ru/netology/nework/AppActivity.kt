@@ -70,7 +70,7 @@ class AppActivity : AppCompatActivity() {
                 R.id.nav_posts,
                 R.id.nav_user,
                 R.id.nav_events,
-                R.id.nav_profile,
+     //           R.id.profileFragment,
                 -> {
                     navView.visibility = View.VISIBLE
                 }
@@ -80,18 +80,18 @@ class AppActivity : AppCompatActivity() {
             }
         }
 
-  //    val appBarConfiguration = AppBarConfiguration(
-  //        setOf(
-  //            R.id.nav_posts,
-  //            R.id.nav_user,
-  //            R.id.nav_events,
-  //        )
-  //    )
-  //     setupActionBarWithNavController(navController, appBarConfiguration)
+      val appBarConfiguration = AppBarConfiguration(
+          setOf(
+              R.id.nav_posts,
+              R.id.nav_user,
+              R.id.nav_events,
+          )
+      )
+       setupActionBarWithNavController(navController, appBarConfiguration)
 
         navView.setupWithNavController(navController)
 
-        val itemIcon = navView.menu.findItem(R.id.nav_profile)
+        val itemIcon = navView.menu.findItem(R.id.profileFragment)
 
         authViewModel.data.observe(this) { auth ->
             invalidateOptionsMenu()
@@ -101,10 +101,10 @@ class AppActivity : AppCompatActivity() {
                 userViewModel.getUserById(auth.id)
             }
 
-            navView.menu.findItem(R.id.nav_profile).setOnMenuItemClickListener {
+            navView.menu.findItem(R.id.profileFragment).setOnMenuItemClickListener {
                 if (!authViewModel.authorized) {
                     findNavController(R.id.nav_host_fragment_activity_app)
- //                       .navigate(R.id.nav_sign_in_fragment)
+                        .navigate(R.id.signInFragment)
                     true
                 } else {
                     userViewModel.getUserById(auth.id)
@@ -119,7 +119,7 @@ class AppActivity : AppCompatActivity() {
                     findNavController(R.id.nav_host_fragment_activity_app).popBackStack()
 
                     findNavController(R.id.nav_host_fragment_activity_app)
-                        .navigate(R.id.nav_profile, bundle)
+                        .navigate(R.id.profileFragment, bundle)
                     true
                 }
             }
@@ -162,12 +162,12 @@ class AppActivity : AppCompatActivity() {
             }
             R.id.sign_in -> {
                 findNavController(R.id.nav_host_fragment_activity_app)
-//                    .navigate(R.id.nav_sign_in_fragment)
+                    .navigate(R.id.signInFragment)
                 true
             }
             R.id.sign_up -> {
                 findNavController(R.id.nav_host_fragment_activity_app)
-//                    .navigate(R.id.nav_sign_up_fragment)
+                   .navigate(R.id.signUpFragment)
                 true
             }
             R.id.sign_out -> {

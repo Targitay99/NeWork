@@ -19,18 +19,18 @@ interface RepositoryModule {
     @Binds
     fun bindsEventRepository(impl: EventRepositoryImpl): EventRepository
 
-//    @Singleton
-//    @Binds
-//    fun bindsWallRepository(impl: WallRepositoryImpl): WallRepository
+    @Singleton
+    @Binds
+    fun bindsWallRepository(impl: WallRepositoryImpl): WallRepository
 
     @Singleton
     @Binds
     fun bindsUserRepository(impl: UserRepositoryImpl): UserRepository
 
-//   @Singleton
-//   @Binds
-//   fun bindsJobRepository(impl: JobRepositoryImpl): JobRepository
-//
+   @Singleton
+   @Binds
+   fun bindsJobRepository(impl: JobRepositoryImpl): JobRepository
+
 //    @Singleton
 //    @Binds
 //    fun bindsSignInRepository(impl: SignInRepositoryImpl): SignInRepository

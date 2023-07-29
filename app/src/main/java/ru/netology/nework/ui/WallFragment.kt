@@ -1,4 +1,5 @@
 package ru.netology.nework.ui
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -17,19 +18,20 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
 import ru.netology.nework.R
 import ru.netology.nework.adapter.OnPostInteractionListener
-import ru.netology.nework.adapter.LoadingStateAdapter
 import ru.netology.nework.adapter.PostsAdapter
-import ru.netology.nework.databinding.FragmentPostBinding
+import ru.netology.nework.databinding.FragmentWallBinding
 import ru.netology.nework.dto.Post
 import ru.netology.nework.viewmodel.AuthViewModel
 import ru.netology.nework.viewmodel.PostViewModel
 import ru.netology.nework.viewmodel.UserViewModel
+import ru.netology.nework.viewmodel.WallViewModel
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class PostsFragment : Fragment() {
+class WallFragment : Fragment() {
 
     private val postViewModel by activityViewModels<PostViewModel>()
+    private val wallViewModel by activityViewModels<WallViewModel>()
     private val authViewModel by activityViewModels<AuthViewModel>()
     private val userViewModel by activityViewModels<UserViewModel>()
 
@@ -38,7 +40,7 @@ class PostsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        val binding = FragmentPostBinding.inflate(
+        val binding = FragmentWallBinding.inflate(
             inflater,
             container,
             false
@@ -86,13 +88,18 @@ class PostsFragment : Fragment() {
             }
 
             override fun onSharePost(post: Post) {
-                val intent = Intent().apply {
-                    action = Intent.ACTION_SEND
-                    putExtra(Intent.EXTRA_TEXT, post.content)
-                    type = "text/plain"
+                if (authViewModel.authorized) {
+                    val intent = Intent().apply {
+                        action = Intent.ACTION_SEND
+                        putExtra(Intent.EXTRA_TEXT, post.content)
+                        type = "text/plain"
+                    }
+                    val shareIntent = Intent.createChooser(intent, "Share post")
+                    startActivity(shareIntent)
+                } else {
+                    Toast.makeText(activity, R.string.error_auth, Toast.LENGTH_SHORT)
+                        .show()
                 }
-                val shareIntent = Intent.createChooser(intent, "Share Post")
-                startActivity(shareIntent)
             }
 
             override fun onOpenLikers(post: Post) {
@@ -100,9 +107,7 @@ class PostsFragment : Fragment() {
                 if (post.likeOwnerIds.isEmpty()) {
                     Toast.makeText(context, R.string.no_likers, Toast.LENGTH_SHORT)
                         .show()
-                } else {
-                    findNavController().navigate(R.id.action_nav_posts_to_bottomSheetFragment)
-                }
+                } else findNavController().navigate(R.id.bottomSheetFragment)
             }
 
             override fun onOpenMentions(post: Post) {
@@ -110,9 +115,7 @@ class PostsFragment : Fragment() {
                 if (post.mentionIds.isEmpty()) {
                     Toast.makeText(context, R.string.no_mentions, Toast.LENGTH_SHORT)
                         .show()
-                } else {
-                    findNavController().navigate(R.id.action_nav_posts_to_bottomSheetFragment)
-                }
+                } else findNavController().navigate(R.id.bottomSheetFragment)
             }
 
             override fun onPlayAudio(post: Post) {
@@ -140,35 +143,22 @@ class PostsFragment : Fragment() {
                         .show()
                 }
             }
-
-            override fun onOpenImageAttachment(post: Post) {
-                val bundle = Bundle().apply {
-                    putString("url", post.attachment?.url)
-                }
-                findNavController().navigate(R.id.imageAttachmentFragment, bundle)
-            }
         })
 
-        binding.recyclerViewContainerFragmentPosts.adapter =
-            adapter.withLoadStateHeaderAndFooter(
-                header = LoadingStateAdapter {
-                    adapter.retry()
-                },
-                footer = LoadingStateAdapter {
-                    adapter.retry()
-                }
-            )
+        val id = parentFragment?.arguments?.getLong("id")
+
+        binding.recyclerViewContainerFragmentWall.adapter = adapter
 
         lifecycleScope.launchWhenCreated {
-            postViewModel.data.collectLatest(adapter::submitData)
+            if (id != null) {
+                wallViewModel.loadUserWall(id).collectLatest(adapter::submitData)
+            }
         }
 
         lifecycleScope.launchWhenCreated {
             adapter.loadStateFlow.collectLatest { state ->
-                binding.swipeRefreshFragmentPosts.isRefreshing =
+                binding.swipeRefreshFragmentWall.isRefreshing =
                     state.refresh is LoadState.Loading
-                binding.textViewEmptyTextFragmentPosts.isVisible =
-                    adapter.itemCount < 1
             }
         }
 
@@ -179,9 +169,10 @@ class PostsFragment : Fragment() {
                         .show()
                 }
             }
+            binding.progressBarFragmentWall.isVisible = it.loading
         }
 
-        binding.swipeRefreshFragmentPosts.setOnRefreshListener(adapter::refresh)
+        binding.swipeRefreshFragmentWall.setOnRefreshListener(adapter::refresh)
 
         return binding.root
     }

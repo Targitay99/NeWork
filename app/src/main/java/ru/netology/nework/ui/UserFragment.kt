@@ -64,7 +64,7 @@ class UserFragment : Fragment() {
                         }
                         findNavController().apply {
                             this.popBackStack(R.id.nav_user, true)
-                            this.navigate(R.id.nav_profile, bundle)
+                            this.navigate(R.id.profileFragment, bundle)
                         }
                     }
                 }
