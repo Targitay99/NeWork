@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.map
 import ru.netology.nework.api.UserApiService
 import ru.netology.nework.dao.UserDao
 import ru.netology.nework.dto.User
+import ru.netology.nework.entity.UserEntity
 import ru.netology.nework.entity.toDto
 import ru.netology.nework.entity.toUserEntity
 import ru.netology.nework.errors.ApiError
@@ -38,5 +39,9 @@ class UserRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             throw UnknownError()
         }
+    }
+
+    override fun searchDatabase(searchQuery: String): Flow<List<UserEntity>> {
+        return userDao.searchDatabase(searchQuery)
     }
 }

@@ -65,4 +65,5 @@
     <string name="text_new_event_date">Date :</string>
     <string name="text_new_event_time">Time :</string>
     <string name="add_speakers">Speakers +</string>
+    <string name="search_here">Search Here</string>
 </resources>

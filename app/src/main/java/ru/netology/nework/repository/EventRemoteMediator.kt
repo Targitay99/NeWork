@@ -44,7 +44,7 @@ class EventRemoteMediator(
             }
 
             if (!result.isSuccessful) {
-                throw ApiError(result.message())
+ //               throw ApiError(result.message())
             }
 
             if (result.body().isNullOrEmpty())

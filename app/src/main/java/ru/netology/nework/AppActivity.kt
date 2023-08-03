@@ -28,6 +28,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import ru.netology.nework.R
 import ru.netology.nework.auth.AppAuth
 import ru.netology.nework.databinding.ActivityAppBinding
+import ru.netology.nework.utils.MAIN
 import ru.netology.nework.viewmodel.AuthViewModel
 import ru.netology.nework.viewmodel.UserViewModel
 import javax.inject.Inject
@@ -57,6 +58,7 @@ class AppActivity : AppCompatActivity() {
 
         FirebaseApp.initializeApp(this)
 
+        MAIN = this
         binding = ActivityAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

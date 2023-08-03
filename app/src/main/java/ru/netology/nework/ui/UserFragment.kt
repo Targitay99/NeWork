@@ -13,21 +13,36 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import ru.netology.nework.R
-import ru.netology.nework.adapter.UserAdapter
 import ru.netology.nework.adapter.OnUserInteractionListener
+import ru.netology.nework.adapter.UserAdapter
 import ru.netology.nework.databinding.FragmentUserBinding
 import ru.netology.nework.dto.User
+import ru.netology.nework.entity.toUserEntity
 import ru.netology.nework.viewmodel.EventViewModel
 import ru.netology.nework.viewmodel.PostViewModel
 import ru.netology.nework.viewmodel.UserViewModel
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class UserFragment : Fragment() {
+class UserFragment : Fragment(), androidx.appcompat.widget.SearchView.OnQueryTextListener{
 
     private val userViewModel by viewModels<UserViewModel>()
     private val postViewModel by activityViewModels<PostViewModel>()
     private val eventViewModel by activityViewModels<EventViewModel>()
+    private val adapter: UserAdapter by lazy { UserAdapter(object : OnUserInteractionListener {
+        override fun openProfile(user: User) {userViewModel.getUserById(user.id)
+
+            val bundle = Bundle().apply {
+                putLong("id", user.id)
+                putString("avatar", user.avatar)
+                putString("name", user.name)
+            }
+            findNavController().apply {
+                this.popBackStack(R.id.nav_user, true)
+                this.navigate(R.id.profileFragment, bundle)
+            }}
+    })}
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,42 +55,16 @@ class UserFragment : Fragment() {
             false
         )
 
-        val open = arguments?.getString("open")
+      val open = arguments?.getString("open")
 
-        val adapter = UserAdapter(object : OnUserInteractionListener {
-            override fun openProfile(user: User) {
-                when (open) {
-                    "mention" -> {
-                        postViewModel.changeMentionIds(user.id)
-                        postViewModel.save()
-                        findNavController().navigateUp()
-                    }
-                    "speaker" -> {
-                        eventViewModel.setSpeaker(user.id)
-                        findNavController().navigateUp()
-                    }
-                    else -> {
-                        userViewModel.getUserById(user.id)
 
-                        val bundle = Bundle().apply {
-                            putLong("id", user.id)
-                            putString("avatar", user.avatar)
-                            putString("name", user.name)
-                        }
-                        findNavController().apply {
-                            this.popBackStack(R.id.nav_user, true)
-                            this.navigate(R.id.profileFragment, bundle)
-                        }
-                    }
-                }
-            }
-        })
 
         binding.fragmentListUsers.adapter = adapter
 
         userViewModel.data.observe(viewLifecycleOwner)
         {
-            adapter.submitList(it)
+            adapter.setData(it.toUserEntity())
+//            adapter.submitList(it)
         }
 
         userViewModel.dataState.observe(viewLifecycleOwner)
@@ -89,6 +78,34 @@ class UserFragment : Fragment() {
             binding.progressBarFragmentUsers.isVisible = it.loading
         }
 
+        val search = binding.searchView
+        search.isSubmitButtonEnabled = true
+        search.setOnQueryTextListener(this)
+
         return binding.root
     }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return true
+
+    }
+
+    override fun onQueryTextChange(query: String?): Boolean {
+        if(query != null){
+            searchDatabase(query)
+        }
+        return true
+    }
+
+    private fun searchDatabase(query: String){
+        val searchQuery = "%$query%"
+
+        userViewModel.searchDatabase(searchQuery).observe(this, { list ->
+            list.let {
+                adapter.setData(it)
+            }
+        })
+
+    }
+
 }

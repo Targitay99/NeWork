@@ -115,39 +115,39 @@ class PostsFragment : Fragment() {
                 }
             }
 
-            override fun onPlayAudio(post: Post) {
-                try {
-                    val uri = Uri.parse(post.attachment?.url)
-                    val intent = Intent(Intent.ACTION_VIEW)
+//           override fun onPlayAudio(post: Post) {
+//               try {
+//                   val uri = Uri.parse(post.attachment?.url)
+//                   val intent = Intent(Intent.ACTION_VIEW)
 
-                    intent.setDataAndType(uri, "audio/*")
-                    startActivity(intent)
-                } catch (e: Exception) {
-                    Toast.makeText(context, R.string.no_play, Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
+//                   intent.setDataAndType(uri, "audio/*")
+//                   startActivity(intent)
+//               } catch (e: Exception) {
+//                   Toast.makeText(context, R.string.no_play, Toast.LENGTH_SHORT)
+//                       .show()
+//               }
+//           }
 
-            override fun onPlayVideo(post: Post) {
-                try {
-                    val uri = Uri.parse(post.attachment?.url)
-                    val intent = Intent(Intent.ACTION_VIEW)
+//           override fun onPlayVideo(post: Post) {
+//               try {
+//                   val uri = Uri.parse(post.attachment?.url)
+//                   val intent = Intent(Intent.ACTION_VIEW)
 
-                    intent.setDataAndType(uri, "video/*")
-                    startActivity(intent)
-                } catch (e: Exception) {
-                    Toast.makeText(context, R.string.no_play, Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
+//                   intent.setDataAndType(uri, "video/*")
+//                   startActivity(intent)
+//               } catch (e: Exception) {
+//                   Toast.makeText(context, R.string.no_play, Toast.LENGTH_SHORT)
+//                       .show()
+//               }
+//           }
 
-            override fun onOpenImageAttachment(post: Post) {
-                val bundle = Bundle().apply {
-                    putString("url", post.attachment?.url)
-                }
-                findNavController().navigate(R.id.imageAttachmentFragment, bundle)
-            }
-        })
+//           override fun onOpenImageAttachment(post: Post) {
+//               val bundle = Bundle().apply {
+//                   putString("url", post.attachment?.url)
+//               }
+//               findNavController().navigate(R.id.imageAttachmentFragment, bundle)
+//           }
+       })
 
         binding.recyclerViewContainerFragmentPosts.adapter =
             adapter.withLoadStateHeaderAndFooter(

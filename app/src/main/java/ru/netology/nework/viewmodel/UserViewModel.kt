@@ -6,6 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.netology.nework.api.UserApiService
 import ru.netology.nework.dto.User
+import ru.netology.nework.entity.UserEntity
 import ru.netology.nework.model.StateModel
 import ru.netology.nework.repository.UserRepository
 import javax.inject.Inject
@@ -63,4 +64,9 @@ class UserViewModel @Inject constructor(
         viewModelScope.launch {
             _userIds.value = set
         }
+    fun searchDatabase(searchQuery: String): LiveData<List<UserEntity>> {
+        return userRepository.searchDatabase(searchQuery).asLiveData()
+    }
+
+
 }

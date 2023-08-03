@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import ru.netology.nework.R
-import ru.netology.nework.adapter.OnUserInteractionListener
+//import ru.netology.nework.adapter.OnUserInteractionListener
 import ru.netology.nework.adapter.UserAdapter
 import ru.netology.nework.databinding.FragmentBottomSheetBinding
 import ru.netology.nework.dto.User
@@ -32,28 +32,31 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             false
         )
 
-        val adapter = UserAdapter(object : OnUserInteractionListener {
-            override fun openProfile(user: User) {
-                userViewModel.getUserById(user.id)
-                val bundle = Bundle().apply {
-                    putLong("id", user.id)
-                    putString("name", user.name)
-                    putString("avatar", user.avatar)
-                }
-                findNavController().apply {
+ //       val adapter = UserAdapter(
+ //           object : OnUserInteractionListener
+ //           {
+//            override fun openProfile(user: User) {
+//                userViewModel.getUserById(user.id)
+//                val bundle = Bundle().apply {
+//                    putLong("id", user.id)
+//                    putString("name", user.name)
+//                    putString("avatar", user.avatar)
+//                }
+ //               findNavController().apply {
 //                    this.popBackStack(R.id.navigation_main, true)
-                    this.navigate(R.id.profileFragment, bundle)
-                }
-            }
+  //                  this.navigate(R.id.profileFragment, bundle)
+  //              }
+ //          }
 
-        })
+ //      }
+ //           )
 
-        binding.recyclerViewContainerFragmentBottomSheet.adapter = adapter
+ //       binding.recyclerViewContainerFragmentBottomSheet.adapter = adapter
 
         userViewModel.data.observe(viewLifecycleOwner) {
-            adapter.submitList(it.filter { user ->
-                userViewModel.userIds.value!!.contains(user.id)
-            })
+ //           adapter.submitList(it.filter { user ->
+ //               userViewModel.userIds.value!!.contains(user.id)
+ //           })
         }
 
         return binding.root

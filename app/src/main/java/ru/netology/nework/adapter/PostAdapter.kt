@@ -19,6 +19,7 @@ import ru.netology.nework.dto.AttachmentType
 import ru.netology.nework.dto.Post
 import ru.netology.nework.utils.formatToDate
 import ru.netology.nework.R
+import ru.netology.nework.utils.MediaHelper
 
 
 interface OnPostInteractionListener {
@@ -30,9 +31,9 @@ interface OnPostInteractionListener {
     fun onSharePost(post: Post) {}
     fun onOpenLikers(post: Post) {}
     fun onOpenMentions(post: Post) {}
-    fun onPlayVideo(post: Post) {}
-    fun onPlayAudio(post: Post) {}
-    fun onOpenImageAttachment(post: Post) {}
+    //   fun onPlayVideo(post: Post) {}
+//    fun onPlayAudio(post: Post) {}
+//    fun onOpenImageAttachment(post: Post) {}
 }
 
 class PostsAdapter(
@@ -73,31 +74,72 @@ class PostViewHolder(
             buttonMentionCardPost.isChecked = post.mentionedMe
             checkboxMentionsSumCardPost.text = post.mentionIds.count().toString()
 
-            imageViewAttachmentImageCardPost.visibility =
-                if (post.attachment != null && post.attachment.type == AttachmentType.IMAGE) VISIBLE else GONE
+            //           imageViewAttachmentImageCardPost.visibility =
+            //               if (post.attachment != null && post.attachment.type == AttachmentType.IMAGE) VISIBLE else GONE
 
-            groupAttachmentAudioCardPost.visibility =
-                if (post.attachment != null && post.attachment.type == AttachmentType.AUDIO) VISIBLE else GONE
+            //         groupAttachmentAudioCardPost.visibility =
+            //             if (post.attachment != null && post.attachment.type == AttachmentType.AUDIO) VISIBLE else GONE
 
-            groupAttachmentVideoCardPost.visibility =
-                if (post.attachment != null && post.attachment.type == AttachmentType.VIDEO) VISIBLE else GONE
+            //         groupAttachmentVideoCardPost.visibility =
+            //             if (post.attachment != null && post.attachment.type == AttachmentType.VIDEO) VISIBLE else GONE
 
-            Glide.with(itemView)
-                .load("${post.authorAvatar}")
-                .placeholder(R.drawable.ic_baseline_loading_24)
-                .error(R.drawable.ic_default_user_profile_image)
-                .timeout(10_000)
-                .circleCrop()
-                .into(imageViewAvatarCardPost)
+                      Glide.with(imageViewAvatarCardPost)
+                          .load("${post.authorAvatar}")
+                          .placeholder(R.drawable.ic_avatar)
+                          .error(R.drawable.baseline_person_24)
+                          .timeout(10_000)
+                          .circleCrop()
+                          .into(imageViewAvatarCardPost)
 
-            post.attachment?.apply {
-                Glide.with(imageViewAttachmentImageCardPost)
-                    .load(this.url)
-                    .placeholder(R.drawable.ic_baseline_loading_24)
-                    .error(R.drawable.ic_baseline_error_outline_24)
-                    .timeout(10_000)
-                    .into(imageViewAttachmentImageCardPost)
-            }
+            //           post.attachment?.apply {
+            //               Glide.with(imageViewAttachmentImageCardPost)
+            //                   .load(this.url)
+            //                   .placeholder(R.drawable.ic_baseline_loading_24)
+            //                   .error(R.drawable.ic_baseline_error_outline_24)
+            //                   .timeout(10_000)
+            //                   .into(imageViewAttachmentImageCardPost)
+            //           }
+            exo.visibility = GONE
+            imageViewAttachmentImageCardPost.visibility = GONE
+
+                when (post.attachment?.type) {
+                    AttachmentType.IMAGE -> {
+                        exo.visibility = GONE
+                        imageViewAttachmentImageCardPost.visibility = VISIBLE
+                        Glide.with(imageViewAttachmentImageCardPost)
+                            .load(post.attachment.url)
+                            .placeholder(R.drawable.ic_baseline_loading_24)
+                            .error(R.drawable.ic_baseline_error_outline_24)
+                            .timeout(10_000)
+                            .into(imageViewAttachmentImageCardPost)
+                    }
+
+                    AttachmentType.VIDEO -> {
+                        exo.visibility = VISIBLE
+                        imageViewAvatarCardPost.visibility = GONE
+                        val media = post.attachment.url.let { MediaHelper(exo, it) }
+                        media.create()
+                        exo.setOnClickListener {
+                            media.onPlay()
+                        }
+                    }
+
+                    AttachmentType.AUDIO -> {
+                        exo.visibility = VISIBLE
+                        imageViewAvatarCardPost.visibility = GONE
+                        val media = post.attachment.url.let { MediaHelper(exo, it) }
+                        media.create()
+                        exo.setOnClickListener {
+                            media.onPlay()
+                        }
+                    }
+                   null -> {
+                       exo.visibility = GONE
+                       imageViewAvatarCardPost.visibility = GONE
+                    }
+                }
+
+
 
             buttonMenuCardPost.isVisible = post.ownedByMe
             buttonMenuCardPost.setOnClickListener {
@@ -110,10 +152,12 @@ class PostViewHolder(
                                 onPostInteractionListener.onRemovePost(post)
                                 true
                             }
+
                             R.id.edit -> {
                                 onPostInteractionListener.onEditPost(post)
                                 true
                             }
+
                             else -> false
                         }
                     }
@@ -149,30 +193,31 @@ class PostViewHolder(
                 onPostInteractionListener.onOpenMentions(post)
             }
 
-            imageButtonBackgroundVideoCardPost.setOnClickListener {
-                onPostInteractionListener.onPlayVideo(post)
-            }
+            //          imageButtonBackgroundVideoCardPost.setOnClickListener {
+            //              onPostInteractionListener.onPlayVideo(post)
+            //          }
 
-            imageButtonPlayVideoCardPost.setOnClickListener {
-                onPostInteractionListener.onPlayVideo(post)
-            }
+            //          imageButtonPlayVideoCardPost.setOnClickListener {
+            //              onPostInteractionListener.onPlayVideo(post)
+            //          }
 
-            imageButtonPlayPauseAudioCardPost.setOnClickListener {
-                onPostInteractionListener.onPlayAudio(post)
-            }
+            //          imageButtonPlayPauseAudioCardPost.setOnClickListener {
+            //              onPostInteractionListener.onPlayAudio(post)
+            //          }
 
-            imageViewAttachmentImageCardPost.setOnClickListener {
-                onPostInteractionListener.onOpenImageAttachment(post)
-            }
+            //          imageViewAttachmentImageCardPost.setOnClickListener {
+            //              onPostInteractionListener.onOpenImageAttachment(post)
+            //          }
         }
     }
 }
 
+
 class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
     override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
-        if (oldItem::class != newItem::class) {
-            return false
-        }
+ //       if (oldItem::class != newItem::class) {
+ //           return false
+ //       }
         return oldItem.id == newItem.id
     }
 
