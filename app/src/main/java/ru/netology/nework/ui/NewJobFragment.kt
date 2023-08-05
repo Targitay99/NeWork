@@ -75,8 +75,10 @@ class NewJobFragment : Fragment() {
                 if (
                     it.editTextNameFragmentNewJob.text.isNullOrBlank() ||
                     it.editTextPositionFragmentNewJob.text.isNullOrBlank() ||
-                    it.editTextStartFragmentNewJob.text.isNullOrBlank()
-                ) {
+                    it.editTextStartFragmentNewJob.text.isNullOrBlank() ||
+                    it.editTextFinishFragmentNewJob.text.isNullOrBlank() ||
+                    it.editTextLinkFragmentNewJob.text.isNullOrBlank()
+                        ) {
                     Toast.makeText(
                         activity,
                         R.string.error_field_required,

@@ -16,6 +16,8 @@ data class Job(
             position = "",
             start = "",
             finish = null,
+            link = null,
+            ownedByMe = false
         )
     }
 }

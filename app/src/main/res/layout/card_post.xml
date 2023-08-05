@@ -166,38 +166,15 @@
             app:layout_constraintTop_toBottomOf="@id/checkbox_likes_sum_card_post" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/checkbox_mentions_sum_card_post"
-            style="@style/Widget.AppTheme.MentionsSumCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_spacing_small"
-            android:checked="false"
-            app:layout_constraintStart_toStartOf="@+id/button_mention_card_post"
-            app:layout_constraintTop_toTopOf="@id/barrier_downer_menu_card_post"
-            tools:text="100" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_mention_card_post"
-            style="@style/Widget.AppTheme.MentionCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/common_spacing_medium"
-            android:checkable="true"
-            app:layout_constraintBottom_toBottomOf="@id/button_like_card_post"
-            app:layout_constraintStart_toEndOf="@+id/button_like_card_post"
-            app:layout_constraintTop_toTopOf="@+id/button_like_card_post" />
-
-        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_share_card_post"
             style="@style/Widget.AppTheme.ShareCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/common_spacing_medium"
             android:checkable="true"
             android:contentDescription="@string/description_share"
-            app:layout_constraintBottom_toBottomOf="@id/button_mention_card_post"
-            app:layout_constraintStart_toEndOf="@+id/button_mention_card_post"
-            app:layout_constraintTop_toTopOf="@+id/button_mention_card_post"
+            app:layout_constraintEnd_toStartOf="@+id/button_view_card_post"
+            app:layout_constraintStart_toEndOf="@+id/button_like_card_post"
+            app:layout_constraintTop_toTopOf="@+id/button_like_card_post"
             tools:text="500" />
 
         <com.google.android.material.button.MaterialButton

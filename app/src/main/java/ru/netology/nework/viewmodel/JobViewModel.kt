@@ -24,6 +24,8 @@ private val empty = Job(
     position = "",
     start = "",
     finish = null,
+    link = null,
+    ownedByMe = false
 )
 
 @ExperimentalCoroutinesApi
@@ -80,7 +82,8 @@ class JobViewModel @Inject constructor(
                     _dataState.postValue(StateModel())
                     _jobCreated.value = Unit
                 } catch (e: Exception) {
-                    _dataState.postValue(StateModel(error = true))
+ //                   _dataState.postValue(StateModel(error = true))
+
                 }
             }
         }

@@ -70,8 +70,6 @@ class PostViewHolder(
             textViewContentCardPost.text = post.content
             buttonLikeCardPost.isChecked = post.likedByMe
             checkboxLikesSumCardPost.text = post.likeOwnerIds.count().toString()
-            buttonMentionCardPost.isChecked = post.mentionedMe
-            checkboxMentionsSumCardPost.text = post.mentionIds.count().toString()
 
             imageViewAttachmentImageCardPost.visibility =
                 if (post.attachment != null && post.attachment.type == AttachmentType.IMAGE) VISIBLE else GONE
@@ -138,12 +136,6 @@ class PostViewHolder(
                 onPostInteractionListener.onLikePost(post)
             }
 
-            buttonMentionCardPost.visibility =
-                if (post.ownedByMe) VISIBLE else INVISIBLE
-            buttonMentionCardPost.setOnClickListener {
-                onPostInteractionListener.onMentionPost(post)
-            }
-
             buttonShareCardPost.setOnClickListener {
                 onPostInteractionListener.onSharePost(post)
             }
@@ -151,11 +143,6 @@ class PostViewHolder(
             checkboxLikesSumCardPost.setOnClickListener {
                 onPostInteractionListener.onOpenLikers(post)
             }
-
-            checkboxMentionsSumCardPost.setOnClickListener {
-                onPostInteractionListener.onOpenMentions(post)
-            }
-
 
             imageViewAttachmentImageCardPost.setOnClickListener {
                 onPostInteractionListener.onOpenImageAttachment(post)

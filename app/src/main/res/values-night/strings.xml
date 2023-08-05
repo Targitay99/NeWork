@@ -48,8 +48,8 @@
     <string name="title_job">JOb</string>
     <string name="text_job_name">Company :</string>
     <string name="text_job_position">Position :</string>
-    <string name="text_job_start">From :</string>
-    <string name="text_job_finish">To :</string>
+    <string name="text_job_start">From : (YYYY-MM-DD)</string>
+    <string name="text_job_finish">To : (YYYY-MM-DD</string>
     <string name="text_job_link">Site :</string>
     <string name="text_job_now">now</string>
     <string name="empty_jobs">There are no jobs. If you create a new job, it will appear here</string>

@@ -93,6 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:importantForAutofill="no"
+                android:inputType="datetime"
                 tools:text="@tools:sample/date/ddmmyy" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -117,6 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:importantForAutofill="no"
+                android:inputType="datetime"
                 tools:text="@tools:sample/date/ddmmyy" />
 
         </com.google.android.material.textfield.TextInputLayout>

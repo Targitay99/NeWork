@@ -50,6 +50,8 @@ class NewPostFragment : Fragment() {
 
         fragmentNewPostBinding = binding
 
+        binding.editTextFragmentNewPost.setText(arguments?.getString("content"))
+
         arguments?.textArg
             ?.let(binding.editTextFragmentNewPost::setText) ?: postViewModel.edited.value?.content
 
