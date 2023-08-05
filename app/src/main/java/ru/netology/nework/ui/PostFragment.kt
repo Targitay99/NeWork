@@ -21,6 +21,7 @@ import ru.netology.nework.adapter.LoadingStateAdapter
 import ru.netology.nework.adapter.PostsAdapter
 import ru.netology.nework.databinding.FragmentPostBinding
 import ru.netology.nework.dto.Post
+import ru.netology.nework.dto.User
 import ru.netology.nework.viewmodel.AuthViewModel
 import ru.netology.nework.viewmodel.PostViewModel
 import ru.netology.nework.viewmodel.UserViewModel
@@ -115,38 +116,23 @@ class PostsFragment : Fragment() {
                 }
             }
 
-//           override fun onPlayAudio(post: Post) {
-//               try {
-//                   val uri = Uri.parse(post.attachment?.url)
-//                   val intent = Intent(Intent.ACTION_VIEW)
+            override fun openProfile(post: Post) {
+                val bundle = Bundle().apply {
+                    putLong("id", post.authorId)
+                    putString("name", post.author)
+                }
+                findNavController().apply {
+                    this.popBackStack(R.id.nav_user, true)
+                    this.navigate(R.id.profileFragment, bundle)
+                }
+            }
 
-//                   intent.setDataAndType(uri, "audio/*")
-//                   startActivity(intent)
-//               } catch (e: Exception) {
-//                   Toast.makeText(context, R.string.no_play, Toast.LENGTH_SHORT)
-//                       .show()
-//               }
-//           }
-
-//           override fun onPlayVideo(post: Post) {
-//               try {
-//                   val uri = Uri.parse(post.attachment?.url)
-//                   val intent = Intent(Intent.ACTION_VIEW)
-
-//                   intent.setDataAndType(uri, "video/*")
-//                   startActivity(intent)
-//               } catch (e: Exception) {
-//                   Toast.makeText(context, R.string.no_play, Toast.LENGTH_SHORT)
-//                       .show()
-//               }
-//           }
-
-//           override fun onOpenImageAttachment(post: Post) {
-//               val bundle = Bundle().apply {
-//                   putString("url", post.attachment?.url)
-//               }
-//               findNavController().navigate(R.id.imageAttachmentFragment, bundle)
-//           }
+           override fun onOpenImageAttachment(post: Post) {
+               val bundle = Bundle().apply {
+                   putString("url", post.attachment?.url)
+               }
+               findNavController().navigate(R.id.imageAttachmentFragment, bundle)
+           }
        })
 
         binding.recyclerViewContainerFragmentPosts.adapter =

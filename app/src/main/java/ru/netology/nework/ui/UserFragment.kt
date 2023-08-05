@@ -27,8 +27,6 @@ import ru.netology.nework.viewmodel.UserViewModel
 class UserFragment : Fragment(), androidx.appcompat.widget.SearchView.OnQueryTextListener{
 
     private val userViewModel by viewModels<UserViewModel>()
-    private val postViewModel by activityViewModels<PostViewModel>()
-    private val eventViewModel by activityViewModels<EventViewModel>()
     private val adapter: UserAdapter by lazy { UserAdapter(object : OnUserInteractionListener {
         override fun openProfile(user: User) {userViewModel.getUserById(user.id)
 
@@ -55,16 +53,12 @@ class UserFragment : Fragment(), androidx.appcompat.widget.SearchView.OnQueryTex
             false
         )
 
-      val open = arguments?.getString("open")
-
-
 
         binding.fragmentListUsers.adapter = adapter
 
         userViewModel.data.observe(viewLifecycleOwner)
         {
             adapter.setData(it.toUserEntity())
-//            adapter.submitList(it)
         }
 
         userViewModel.dataState.observe(viewLifecycleOwner)

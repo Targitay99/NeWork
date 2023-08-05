@@ -42,7 +42,6 @@ class PostRepositoryImpl @Inject constructor(
 
     override suspend fun savePost(post: Post) {
         try {
-//            postDao.savePost(PostEntity.fromDto(post))
             val response = postApiService.savePost(post)
             if (!response.isSuccessful) {
                 throw ApiError(response.message())

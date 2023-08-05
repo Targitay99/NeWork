@@ -55,6 +55,7 @@
             android:layout_height="@dimen/posts_avatar_size"
             android:layout_centerInParent="true"
             android:contentDescription="@string/description_post_author_avatar"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@drawable/netology_foreground" />
@@ -75,7 +76,7 @@
             android:layout_height="wrap_content"
             app:barrierDirection="bottom"
             app:barrierMargin="@dimen/common_spacing_large"
-            app:constraint_referenced_ids="image_view_avatar_card_post, text_view_published_card_post" />
+            app:constraint_referenced_ids=" text_view_published_card_post" />
 
         <TextView
             android:id="@+id/text_view_content_card_post"
