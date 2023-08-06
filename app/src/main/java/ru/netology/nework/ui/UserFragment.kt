@@ -28,8 +28,8 @@ class UserFragment : Fragment(), androidx.appcompat.widget.SearchView.OnQueryTex
 
     private val userViewModel by viewModels<UserViewModel>()
     private val adapter: UserAdapter by lazy { UserAdapter(object : OnUserInteractionListener {
-        override fun openProfile(user: User) {userViewModel.getUserById(user.id)
-
+        override fun openProfile(user: User) {
+            userViewModel.getUserById(user.id)
             val bundle = Bundle().apply {
                 putLong("id", user.id)
                 putString("avatar", user.avatar)

@@ -41,7 +41,7 @@
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
                 android:padding="@dimen/common_spacing_medium"
-                android:textColorHint="@color/orange_500"
+                android:textColorHint="@color/purple_200"
                 tools:ignore="MissingConstraints"
                 tools:text="@tools:sample/lorem[50]" />
 

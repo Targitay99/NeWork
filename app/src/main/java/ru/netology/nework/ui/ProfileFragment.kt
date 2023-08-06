@@ -23,6 +23,7 @@ import ru.netology.nework.viewmodel.AuthViewModel
 import ru.netology.nework.viewmodel.EventViewModel
 import ru.netology.nework.viewmodel.JobViewModel
 import ru.netology.nework.viewmodel.PostViewModel
+import ru.netology.nework.viewmodel.UserViewModel
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
@@ -36,6 +37,8 @@ class ProfileFragment : Fragment() {
 
     private val jobViewModel by activityViewModels<JobViewModel>()
 
+    private val userViewModel by activityViewModels<UserViewModel> ()
+
     private val profileTitles = arrayOf(
         R.string.title_posts,
 //        R.string.title_events,
@@ -44,7 +47,7 @@ class ProfileFragment : Fragment() {
 
     private var visibilityFabGroup = false
 
-    override fun onCreateView(
+      override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -54,6 +57,7 @@ class ProfileFragment : Fragment() {
             container,
             false
         )
+
 
         val viewPagerProfile = binding.viewPagerFragmentProfile
         val tabLayoutProfile = binding.tabLayoutFragmentProfile

@@ -29,7 +29,7 @@
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
                 android:padding="@dimen/common_spacing_medium"
-                android:textColorHint="@color/orange_500"
+                android:textColorHint="@color/purple_200"
                 tools:ignore="MissingConstraints"
                 tools:text="@tools:sample/lorem[50]" />
 
@@ -71,8 +71,8 @@
                 android:hint="@string/text_new_event_date"
                 android:inputType="date"
                 android:padding="@dimen/common_spacing_medium"
-                app:boxStrokeColor="@color/orange_500"
-                app:hintTextColor="@color/orange_500"
+                app:boxStrokeColor="@color/purple_200"
+                app:hintTextColor="@color/purple_200"
                 tools:ignore="MissingConstraints">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -96,8 +96,8 @@
                 android:hint="@string/text_new_event_time"
                 android:inputType="time"
                 android:padding="@dimen/common_spacing_medium"
-                app:boxStrokeColor="@color/orange_500"
-                app:hintTextColor="@color/orange_500"
+                app:boxStrokeColor="@color/purple_200"
+                app:hintTextColor="@color/purple_200"
                 tools:ignore="MissingConstraints">
 
                 <com.google.android.material.textfield.TextInputEditText

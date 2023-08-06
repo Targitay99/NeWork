@@ -33,7 +33,7 @@
     </style>
 
     <style name="Widget.AppTheme.LikeSumCheckBox" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="iconTint">@color/orange_200</item>
+        <item name="iconTint">@color/purple_200</item>
         <item name="icon">@drawable/ic_baseline_favorite_16</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:letterSpacing">0</item>
@@ -62,7 +62,7 @@
     </style>
 
     <style name="Widget.AppTheme.MentionsSumCheckBox" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="iconTint">@color/orange_200</item>
+        <item name="iconTint">@color/purple_200</item>
         <item name="icon">@drawable/ic_baseline_groups_16</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:letterSpacing">0</item>
@@ -154,7 +154,7 @@
     </style>
 
     <style name="Widget.AppTheme.ParticipantsSumCheckBox" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="iconTint">@color/orange_200</item>
+        <item name="iconTint">@color/purple_200</item>
         <item name="icon">@drawable/ic_baseline_supervised_user_circle_16</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:letterSpacing">0</item>
