@@ -70,5 +70,9 @@
     <string name="search_here">Search Here</string>
     <string name="text_job_start_card">From:</string>
     <string name="text_job_finish_card">To :</string>
+    <string name="set_point_button">Set point</string>
+    <string name="location_button">Location</string>
+    <string name="no_location">No access to location</string>
+    <string name="title_map">Map</string>
 
 </resources>

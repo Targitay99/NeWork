@@ -1,6 +1,7 @@
 package ru.netology.nework.application
 
 import android.app.Application
+import com.yandex.mapkit.MapKitFactory
 // import com.yandex.mapkit.MapKitFactory
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
@@ -21,7 +22,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         setupAuth()
- //       MapKitFactory.setApiKey(BuildConfig.MAPS_API_KEY)
+        MapKitFactory.setApiKey(BuildConfig.MAPS_API_KEY)
     }
 
     private fun setupAuth() {

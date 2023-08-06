@@ -60,7 +60,7 @@ class EventsFragment : Fragment() {
 
                 }
                 findNavController()
-  //                  .navigate(R.id.nav_new_event_fragment, bundle)
+                    .navigate(R.id.newEventFragment, bundle)
             }
 
             override fun onRemoveEvent(event: Event) {
@@ -73,7 +73,7 @@ class EventsFragment : Fragment() {
                     Toast.makeText(context, R.string.no_speakers, Toast.LENGTH_SHORT)
                         .show()
                 } else {
- //                   findNavController().navigate(R.id.action_nav_events_to_nav_bottom_sheet_fragment)
+                    findNavController().navigate(R.id.bottomSheetFragment)
                 }
             }
 
@@ -86,14 +86,14 @@ class EventsFragment : Fragment() {
                         putDouble("long", it)
                     }
                 }
- //               findNavController().navigate(R.id.nav_map_fragment, bundle)
+                findNavController().navigate(R.id.mapFragment, bundle)
             }
 
             override fun onOpenImageAttachment(event: Event) {
                 val bundle = Bundle().apply {
                     putString("url", event.attachment?.url)
                 }
- //               findNavController().navigate(R.id.nav_image_attachment_fragment, bundle)
+                findNavController().navigate(R.id.imageAttachmentFragment, bundle)
             }
 
             override fun onLikeEvent(event: Event) {
@@ -134,7 +134,7 @@ class EventsFragment : Fragment() {
                     Toast.makeText(context, R.string.no_likers, Toast.LENGTH_SHORT)
                         .show()
                 } else {
- //                   findNavController().navigate(R.id.action_nav_events_to_nav_bottom_sheet_fragment)
+                    findNavController().navigate(R.id.bottomSheetFragment)
                 }
             }
 
@@ -144,7 +144,7 @@ class EventsFragment : Fragment() {
                     Toast.makeText(context, R.string.no_participants, Toast.LENGTH_SHORT)
                         .show()
                 } else {
-          //          findNavController().navigate(R.id.action_nav_events_to_nav_bottom_sheet_fragment)
+                    findNavController().navigate(R.id.bottomSheetFragment)
                 }
             }
         })

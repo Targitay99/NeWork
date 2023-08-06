@@ -106,4 +106,8 @@
         android:id="@+id/newJobFragment"
         android:name="ru.netology.nework.ui.NewJobFragment"
         android:label="NewJobFragment" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="ru.netology.nework.ui.MapFragment"
+        android:label="MapFragment" />
 </navigation>
