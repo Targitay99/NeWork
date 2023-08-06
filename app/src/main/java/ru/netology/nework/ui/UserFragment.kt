@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,8 +17,6 @@ import ru.netology.nework.adapter.UserAdapter
 import ru.netology.nework.databinding.FragmentUserBinding
 import ru.netology.nework.dto.User
 import ru.netology.nework.entity.toUserEntity
-import ru.netology.nework.viewmodel.EventViewModel
-import ru.netology.nework.viewmodel.PostViewModel
 import ru.netology.nework.viewmodel.UserViewModel
 
 @ExperimentalCoroutinesApi
@@ -94,12 +91,10 @@ class UserFragment : Fragment(), androidx.appcompat.widget.SearchView.OnQueryTex
     private fun searchDatabase(query: String){
         val searchQuery = "%$query%"
 
-        userViewModel.searchDatabase(searchQuery).observe(this, { list ->
+        userViewModel.searchDatabase(searchQuery).observe(this) { list ->
             list.let {
                 adapter.setData(it)
             }
-        })
-
+        }
     }
-
 }

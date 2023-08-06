@@ -100,7 +100,7 @@ class NewEventFragment : Fragment() {
                     putDouble("long", longitude!!)
                 }
             }
- //           findNavController().navigate(R.id.nav_map_fragment, bundle)
+            findNavController().navigate(R.id.mapFragment, bundle)
         }
 
         binding.editTextDateFragmentNewEvent.setOnClickListener {

@@ -49,10 +49,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/common_spacing_large"
+        app:dividerColor="@color/gray_empty_icon"
         app:dividerInsetEnd="@dimen/common_spacing_large"
         app:dividerInsetStart="@dimen/divider_start_margin"
-        app:dividerColor="@color/gray_empty_icon"
         app:layout_constraintStart_toStartOf="@+id/user_name"
         app:layout_constraintTop_toBottomOf="@id/user_avatar_card" />
+
+    <Button
+        android:id="@+id/add_speaker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/add_speakers"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/user_view"
+        app:layout_constraintTop_toTopOf="@+id/user_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
