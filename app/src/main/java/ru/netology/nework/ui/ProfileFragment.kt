@@ -19,6 +19,7 @@ import ru.netology.nework.databinding.FragmentProfileBinding
 import ru.netology.nework.dto.Event
 import ru.netology.nework.dto.Job
 import ru.netology.nework.dto.Post
+import ru.netology.nework.utils.Utils
 import ru.netology.nework.viewmodel.AuthViewModel
 import ru.netology.nework.viewmodel.EventViewModel
 import ru.netology.nework.viewmodel.JobViewModel
@@ -39,10 +40,13 @@ class ProfileFragment : Fragment() {
 
     private val userViewModel by activityViewModels<UserViewModel> ()
 
+    private var twist = false
+
     private val profileTitles = arrayOf(
         R.string.title_posts,
         R.string.title_events,
         R.string.title_jobs
+
     )
 
     private var visibilityFabGroup = false
@@ -96,16 +100,28 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        binding.fabAdd.setOnClickListener {
-            if (!visibilityFabGroup) {
-                binding.fabAdd.setImageResource(R.drawable.ic_baseline_close_24)
-                binding.fabGroup.visibility = View.VISIBLE
-            } else {
-                binding.fabAdd.setImageResource(R.drawable.ic_baseline_add_24)
-                binding.fabGroup.visibility = View.GONE
-            }
-            visibilityFabGroup = !visibilityFabGroup
-        }
+          Utils.hideFirstFab(binding.linearAddEvent)
+          Utils.hideFirstFab(binding.linearAddPost)
+          Utils.hideFirstFab(binding.linearAddJob)
+
+          binding.fabAdd.setOnClickListener { v ->
+              twist = Utils.twistFab(v, !twist)
+
+              if (twist) {
+
+                  Utils.showFab(binding.linearAddEvent)
+                  Utils.showFab(binding.linearAddPost)
+                  Utils.showFab(binding.linearAddJob)
+
+              } else {
+
+                  Utils.hideFab(binding.linearAddEvent)
+                  Utils.hideFab(binding.linearAddPost)
+                  Utils.hideFab(binding.linearAddJob)
+
+              }
+
+          }
 
         binding.fabAddPost.setOnClickListener {
             postViewModel.edit(Post.emptyPost)
