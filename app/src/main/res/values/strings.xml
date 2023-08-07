@@ -47,7 +47,7 @@
     <string name="description_fab_add" />
     <string name="title_post">Post</string>
     <string name="title_event">Event</string>
-    <string name="title_job">JOb</string>
+    <string name="title_job">Job</string>
     <string name="text_job_name">Company :</string>
     <string name="text_job_position">Position :</string>
     <string name="text_job_start">From : (YYYY-MM-DD)</string>
@@ -74,5 +74,17 @@
     <string name="location_button">Location</string>
     <string name="no_location">No access to location</string>
     <string name="title_map">Map</string>
+    <string name="post">Post</string>
+    <string name="fragment_events">Event</string>
+    <string name="fragment_user">Users</string>
+    <string name="fragment_sign_in">Authorization</string>
+    <string name="fragment_sign_up">Registration</string>
+    <string name="fragment_jobs">Job</string>
+    <string name="fragment_wall">Wall</string>
+    <string name="fragment_new_post">New post</string>
+    <string name="fragment_profile">Profile</string>
+    <string name="fragment_new_event" />
+    <string name="newjobfragment">New Job</string>
+    <string name="mapfragment">Map</string>
 
 </resources>

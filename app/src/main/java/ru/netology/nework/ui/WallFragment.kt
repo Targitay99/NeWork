@@ -118,31 +118,6 @@ class WallFragment : Fragment() {
                 } else findNavController().navigate(R.id.bottomSheetFragment)
             }
 
-  //          override fun onPlayAudio(post: Post) {
-  //              try {
-  //                  val uri = Uri.parse(post.attachment?.url)
-  //                  val intent = Intent(Intent.ACTION_VIEW)
-//
-  //                  intent.setDataAndType(uri, "audio/*")
-  //                  startActivity(intent)
-  //              } catch (e: Exception) {
-  //                  Toast.makeText(context, R.string.no_play, Toast.LENGTH_SHORT)
-  //                      .show()
-  //              }
-  //          }
-
-  //          override fun onPlayVideo(post: Post) {
-  //              try {
-  //                  val uri = Uri.parse(post.attachment?.url)
-  //                  val intent = Intent(Intent.ACTION_VIEW)
-//
-  //                  intent.setDataAndType(uri, "video/*")
-  //                  startActivity(intent)
-  //              } catch (e: Exception) {
-  //                  Toast.makeText(context, R.string.no_play, Toast.LENGTH_SHORT)
-  //                      .show()
-  //              }
-  //          }
         })
 
         val id = parentFragment?.arguments?.getLong("id")

@@ -41,7 +41,7 @@ class ProfileFragment : Fragment() {
 
     private val profileTitles = arrayOf(
         R.string.title_posts,
-//        R.string.title_events,
+        R.string.title_events,
         R.string.title_jobs
     )
 

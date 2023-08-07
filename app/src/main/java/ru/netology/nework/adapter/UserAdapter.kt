@@ -23,8 +23,6 @@ class UserAdapter(private val onUserInteractionListener: OnUserInteractionListen
 
     private var oldData = emptyList<UserEntity>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-
-
         val binding = CardUserBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )

@@ -21,6 +21,10 @@ interface RepositoryModule {
 
     @Singleton
     @Binds
+    fun bindsWallEventRepository(impl: WallEventRepositoryImpl): WallEventRepository
+
+    @Singleton
+    @Binds
     fun bindsWallRepository(impl: WallRepositoryImpl): WallRepository
 
     @Singleton

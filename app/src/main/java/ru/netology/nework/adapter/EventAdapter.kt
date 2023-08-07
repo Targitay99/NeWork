@@ -107,10 +107,12 @@ class EventViewHolder(
                                 onEventInteractionListener.onRemoveEvent(event)
                                 true
                             }
+
                             R.id.edit -> {
                                 onEventInteractionListener.onEditEvent(event)
                                 true
                             }
+
                             else -> false
                         }
                     }
@@ -127,12 +129,6 @@ class EventViewHolder(
                 }
             }
 
-//            buttonLocationCardEvent.visibility =
-//                if (
-//                    event.coordinates == null ||
-//                    event.coordinates.lat == 0.0 &&
-//                    event.coordinates.long == 0.0
-//                ) GONE else VISIBLE
 
             buttonLocationCardEvent.setOnClickListener {
                 onEventInteractionListener.onOpenMap(event)

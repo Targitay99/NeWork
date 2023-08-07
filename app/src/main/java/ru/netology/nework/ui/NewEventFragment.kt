@@ -124,6 +124,7 @@ class NewEventFragment : Fragment() {
 
         eventViewModel.edited.observe(viewLifecycleOwner) {
             binding.buttonAddSpeakersFragmentNewEvent.apply {
+
                 text = "$text ${eventViewModel.edited.value?.speakerIds?.count().toString()}"
             }
         }

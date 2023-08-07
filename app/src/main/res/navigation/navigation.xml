@@ -12,7 +12,7 @@
     <fragment
         android:id="@+id/nav_posts"
         android:name="ru.netology.nework.ui.PostsFragment"
-        android:label="fragment_post"
+        android:label="@string/post"
         tools:layout="@layout/fragment_post" >
         <action
             android:id="@+id/action_nav_posts_to_bottomSheetFragment"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/nav_events"
         android:name="ru.netology.nework.ui.EventsFragment"
-        android:label="fragment_events"
+        android:label="@string/fragment_events"
         tools:layout="@layout/fragment_events" >
         <action
             android:id="@+id/action_nav_events_to_bottomSheetFragment"
@@ -30,12 +30,12 @@
     <fragment
         android:id="@+id/nav_user"
         android:name="ru.netology.nework.ui.UserFragment"
-        android:label="fragment_user"
+        android:label="@string/fragment_user"
         tools:layout="@layout/fragment_user" />
     <fragment
         android:id="@+id/signInFragment"
         android:name="ru.netology.nework.ui.SignInFragment"
-        android:label="fragment_sign_in"
+        android:label="@string/fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action
             android:id="@+id/action_signInFragment_to_appActivity"
@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="ru.netology.nework.ui.SignUpFragment"
-        android:label="fragment_sign_up"
+        android:label="@string/fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action
             android:id="@+id/action_signUpFragment_to_appActivity"
@@ -56,12 +56,12 @@
     <fragment
         android:id="@+id/jobsFragment"
         android:name="ru.netology.nework.ui.JobsFragment"
-        android:label="fragment_jobs"
+        android:label="@string/fragment_jobs"
         tools:layout="@layout/fragment_jobs" />
     <fragment
         android:id="@+id/wallFragment"
         android:name="ru.netology.nework.ui.WallFragment"
-        android:label="fragment_wall"
+        android:label="@string/fragment_wall"
         tools:layout="@layout/fragment_wall" >
         <action
             android:id="@+id/action_wallFragment_to_bottomSheetFragment"
@@ -70,12 +70,12 @@
     <fragment
         android:id="@+id/newPostFragment"
         android:name="ru.netology.nework.ui.NewPostFragment"
-        android:label="fragment_new_post"
+        android:label="@string/fragment_new_post"
         tools:layout="@layout/fragment_new_post" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="ru.netology.nework.ui.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="@string/fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profileFragment_to_newPostFragment"
@@ -100,14 +100,14 @@
     <fragment
         android:id="@+id/newEventFragment"
         android:name="ru.netology.nework.ui.NewEventFragment"
-        android:label="fragment_new_event"
+        android:label="@string/fragment_new_event"
         tools:layout="@layout/fragment_new_event" />
     <fragment
         android:id="@+id/newJobFragment"
         android:name="ru.netology.nework.ui.NewJobFragment"
-        android:label="NewJobFragment" />
+        android:label="@string/newjobfragment" />
     <fragment
         android:id="@+id/mapFragment"
         android:name="ru.netology.nework.ui.MapFragment"
-        android:label="MapFragment" />
+        android:label="@string/mapfragment" />
 </navigation>
