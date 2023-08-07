@@ -150,6 +150,8 @@ class WallFragmentEvent : Fragment() {
                     findNavController().navigate(R.id.bottomSheetFragment)
                 }
             }
+
+            override fun onOpenProfile(event: Event) {}
         })
 
         val id = parentFragment?.arguments?.getLong("id")

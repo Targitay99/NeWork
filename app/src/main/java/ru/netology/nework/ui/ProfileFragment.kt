@@ -38,8 +38,6 @@ class ProfileFragment : Fragment() {
 
     private val jobViewModel by activityViewModels<JobViewModel>()
 
-    private val userViewModel by activityViewModels<UserViewModel> ()
-
     private var twist = false
 
     private val profileTitles = arrayOf(
@@ -48,8 +46,6 @@ class ProfileFragment : Fragment() {
         R.string.title_jobs
 
     )
-
-    private var visibilityFabGroup = false
 
       override fun onCreateView(
         inflater: LayoutInflater,
@@ -108,34 +104,32 @@ class ProfileFragment : Fragment() {
               twist = Utils.twistFab(v, !twist)
 
               if (twist) {
-
                   Utils.showFab(binding.linearAddEvent)
                   Utils.showFab(binding.linearAddPost)
                   Utils.showFab(binding.linearAddJob)
-
               } else {
-
                   Utils.hideFab(binding.linearAddEvent)
                   Utils.hideFab(binding.linearAddPost)
                   Utils.hideFab(binding.linearAddJob)
-
               }
-
           }
 
         binding.fabAddPost.setOnClickListener {
             postViewModel.edit(Post.emptyPost)
             findNavController().navigate(R.id.action_profileFragment_to_newPostFragment)
+            twist = false
         }
 
         binding.fabAddEvent.setOnClickListener {
             eventViewModel.edit(Event.emptyEvent)
             findNavController().navigate(R.id.action_profileFragment_to_newEventFragment)
+            twist = false
         }
 
         binding.fabAddJob.setOnClickListener {
             jobViewModel.edit(Job.emptyJob)
             findNavController().navigate(R.id.action_profileFragment_to_newJobFragment)
+            twist = false
         }
 
         return binding.root
