@@ -39,12 +39,13 @@ class EventRepositoryImpl @Inject constructor(
         )
     ).flow
         .map {
-            it.map(EventEntity::toDto)
+            it.map{ entity ->
+                entity.toDto()
+            }
         }
 
     override suspend fun saveEvent(event: Event) {
         try {
-//            eventDao.saveEvent(EventEntity.fromDto(event))
             val response = eventApiService.saveEvent(event)
             if (!response.isSuccessful) {
                 throw ApiError(response.message())

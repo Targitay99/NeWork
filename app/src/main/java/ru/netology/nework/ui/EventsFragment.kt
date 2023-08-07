@@ -147,6 +147,17 @@ class EventsFragment : Fragment() {
                     findNavController().navigate(R.id.bottomSheetFragment)
                 }
             }
+
+            override fun onOpenProfile(event: Event) {
+                val bundle = Bundle().apply {
+                    putLong("id", event.authorId)
+                    putString("name", event.author)
+                }
+                findNavController().apply {
+                    this.popBackStack(R.id.nav_user, true)
+                    this.navigate(R.id.profileFragment, bundle)
+                }
+            }
         })
 
         binding.recyclerViewContainerFragmentEvents.adapter = adapter

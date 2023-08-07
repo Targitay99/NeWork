@@ -13,9 +13,10 @@ import ru.netology.nework.entity.EventEntity
 import ru.netology.nework.entity.EventRemoteKeyEntity
 import ru.netology.nework.errors.ApiError
 import java.io.IOException
+import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
-class EventRemoteMediator(
+class EventRemoteMediator @Inject constructor(
     private val eventDao: EventDao,
     private val eventApiService: EventApiService,
     private val eventRemoteKeyDao: EventRemoteKeyDao,
@@ -29,7 +30,9 @@ class EventRemoteMediator(
         try {
             val result = when (loadType) {
                 LoadType.REFRESH -> {
-                    eventApiService.getEventLatest(state.config.pageSize)
+                    eventRemoteKeyDao.max()?.let {
+                        eventApiService.getEventAfter(it,state.config.pageSize)
+                    }?: eventApiService.getEventLatest(state.config.initialLoadSize)
                 }
                 LoadType.APPEND -> {
                     val id =
@@ -39,12 +42,12 @@ class EventRemoteMediator(
                     eventApiService.getEventBefore(id, state.config.pageSize)
                 }
                 LoadType.PREPEND -> {
-                    return MediatorResult.Success(true)
+                    return MediatorResult.Success(endOfPaginationReached = false)
                 }
             }
 
             if (!result.isSuccessful) {
- //               throw ApiError(result.message())
+                throw ApiError(result.message())
             }
 
             if (result.body().isNullOrEmpty())
@@ -70,7 +73,6 @@ class EventRemoteMediator(
                                 )
                             )
                         }
-                        eventDao.removeAll()
                     }
 
                     LoadType.APPEND -> {

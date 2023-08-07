@@ -32,6 +32,8 @@ interface OnEventInteractionListener {
     fun onShareEvent(event: Event)
     fun onOpenLikers(event: Event)
     fun onOpenParticipants(event: Event)
+
+    fun onOpenProfile(event: Event)
 }
 
 class EventAdapter(
@@ -164,6 +166,11 @@ class EventViewHolder(
             checkboxParticipantsSumCardEvent.setOnClickListener {
                 onEventInteractionListener.onOpenParticipants(event)
             }
+
+            imageViewAvatarCardEvent.setOnClickListener {
+                onEventInteractionListener.onOpenProfile(event)
+            }
+
         }
     }
 }
