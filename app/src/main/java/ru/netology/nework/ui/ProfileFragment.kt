@@ -15,10 +15,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import ru.netology.nework.R
 import ru.netology.nework.adapter.UserProfileAdapter
+import ru.netology.nework.api.UserApiService
 import ru.netology.nework.databinding.FragmentProfileBinding
 import ru.netology.nework.dto.Event
 import ru.netology.nework.dto.Job
 import ru.netology.nework.dto.Post
+import ru.netology.nework.dto.User
 import ru.netology.nework.utils.Utils
 import ru.netology.nework.viewmodel.AuthViewModel
 import ru.netology.nework.viewmodel.EventViewModel
@@ -38,7 +40,10 @@ class ProfileFragment : Fragment() {
 
     private val jobViewModel by activityViewModels<JobViewModel>()
 
+    private val userViewModel by activityViewModels<UserViewModel>()
+
     private var twist = false
+
 
     private val profileTitles = arrayOf(
         R.string.title_posts,
@@ -47,7 +52,7 @@ class ProfileFragment : Fragment() {
 
     )
 
-      override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -62,8 +67,18 @@ class ProfileFragment : Fragment() {
         val viewPagerProfile = binding.viewPagerFragmentProfile
         val tabLayoutProfile = binding.tabLayoutFragmentProfile
         val id = arguments?.getLong("id")
-        val avatar = arguments?.getString("avatar")
-        val name = arguments?.getString("name")
+
+
+        val user:User = userViewModel.getUserById(id).apply {
+             
+        }
+
+//       val avatar = arguments?.getString("avatar")
+//       val name = arguments?.getString("name")
+
+        val avatar = user.avatar
+        val name = user.name
+
 
         (activity as AppCompatActivity).supportActionBar?.title = name
 
@@ -96,23 +111,23 @@ class ProfileFragment : Fragment() {
             }
         }
 
-          Utils.hideFirstFab(binding.linearAddEvent)
-          Utils.hideFirstFab(binding.linearAddPost)
-          Utils.hideFirstFab(binding.linearAddJob)
+        Utils.hideFirstFab(binding.linearAddEvent)
+        Utils.hideFirstFab(binding.linearAddPost)
+        Utils.hideFirstFab(binding.linearAddJob)
 
-          binding.fabAdd.setOnClickListener { v ->
-              twist = Utils.twistFab(v, !twist)
+        binding.fabAdd.setOnClickListener { v ->
+            twist = Utils.twistFab(v, !twist)
 
-              if (twist) {
-                  Utils.showFab(binding.linearAddEvent)
-                  Utils.showFab(binding.linearAddPost)
-                  Utils.showFab(binding.linearAddJob)
-              } else {
-                  Utils.hideFab(binding.linearAddEvent)
-                  Utils.hideFab(binding.linearAddPost)
-                  Utils.hideFab(binding.linearAddJob)
-              }
-          }
+            if (twist) {
+                Utils.showFab(binding.linearAddEvent)
+                Utils.showFab(binding.linearAddPost)
+                Utils.showFab(binding.linearAddJob)
+            } else {
+                Utils.hideFab(binding.linearAddEvent)
+                Utils.hideFab(binding.linearAddPost)
+                Utils.hideFab(binding.linearAddJob)
+            }
+        }
 
         binding.fabAddPost.setOnClickListener {
             postViewModel.edit(Post.emptyPost)

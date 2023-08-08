@@ -17,6 +17,7 @@ interface UserApiService {
     @GET("users/{id}")
     suspend fun getUserById(@Path("id") id: Long): Response<User>
 
+
     @POST("users/push-tokens")
     suspend fun sendPushToken(@Body pushToken: PushToken): Response<Unit>
 

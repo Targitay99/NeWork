@@ -60,6 +60,7 @@ class UserViewModel @Inject constructor(
         }
     }
 
+
     fun getUsersIds(set: Set<Long>) =
         viewModelScope.launch {
             _userIds.value = set
