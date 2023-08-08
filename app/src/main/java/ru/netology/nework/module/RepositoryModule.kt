@@ -4,6 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import retrofit2.Response
+import ru.netology.nework.errors.ApiError
 import ru.netology.nework.repository.*
 import javax.inject.Singleton
 
@@ -31,9 +33,11 @@ interface RepositoryModule {
     @Binds
     fun bindsUserRepository(impl: UserRepositoryImpl): UserRepository
 
-   @Singleton
-   @Binds
-   fun bindsJobRepository(impl: JobRepositoryImpl): JobRepository
+    @Singleton
+    @Binds
+    fun bindsJobRepository(impl: JobRepositoryImpl): JobRepository
+
+}
 
 //    @Singleton
 //    @Binds
@@ -42,4 +46,14 @@ interface RepositoryModule {
 //    @Singleton
 //    @Binds
 //    fun bindsSignUpRepository(impl: SignUpRepositoryImpl): SignUpRepository
+
+fun checkResponse(response: Response<out Any>) {
+    if (!response.isSuccessful) {
+        throw ApiError(response.message())
+    }
+    fun checkResponse2 (response: Response<out Any>) {
+        if (!response.isSuccessful) {
+ //           throw ApiError2(response.code(), response.message(), response.errorBody())
+        }
+    }
 }

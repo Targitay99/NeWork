@@ -8,6 +8,7 @@ import ru.netology.nework.api.UserApiService
 import ru.netology.nework.dto.User
 import ru.netology.nework.entity.UserEntity
 import ru.netology.nework.model.StateModel
+import ru.netology.nework.model.UserModelState
 import ru.netology.nework.repository.UserRepository
 import javax.inject.Inject
 
@@ -26,7 +27,7 @@ class UserViewModel @Inject constructor(
         get() = _dataState
 
     private val _user = MutableLiveData<User>()
-    val user: LiveData<User>
+    val user: MutableLiveData<User>
         get() = _user
 
     private val _userIds = MutableLiveData<Set<Long>>()
@@ -47,18 +48,28 @@ class UserViewModel @Inject constructor(
         }
     }
 
-    fun getUserById(id: Long) = viewModelScope.launch {
-        _dataState.postValue(StateModel(loading = true))
-        try {
-            val response = userApiService.getUserById(id)
-            if (response.isSuccessful) {
-                _user.value = response.body()
-            }
-            _dataState.postValue(StateModel())
-        } catch (e: Exception) {
-            _dataState.postValue(StateModel(error = true))
-        }
+//    fun getUserById(id: Long) = viewModelScope.launch {
+//        _dataState.postValue(StateModel(loading = true))
+//        try {
+//            val response = userApiService.getUserById(id)
+//            if (response.isSuccessful) {
+//                _user.value = response.body()
+//            }
+//            _dataState.postValue(StateModel())
+//        } catch (e: Exception) {
+//            _dataState.postValue(StateModel(error = true))
+//        }
+//    }
+fun getUserById(id: Long) = viewModelScope.launch {
+    try {
+        _dataState.value = StateModel(loading = true)
+        user.value = userRepository.getUserById(id)
+        _dataState.value = StateModel()
+    } catch (e: Exception) {
+        _dataState.value = StateModel(error = true)
     }
+}
+
 
 
     fun getUsersIds(set: Set<Long>) =

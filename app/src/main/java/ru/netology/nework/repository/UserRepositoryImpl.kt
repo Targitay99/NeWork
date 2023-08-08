@@ -12,6 +12,7 @@ import ru.netology.nework.entity.toDto
 import ru.netology.nework.entity.toUserEntity
 import ru.netology.nework.errors.ApiError
 import ru.netology.nework.errors.NetworkError
+import ru.netology.nework.module.checkResponse
 import java.io.IOException
 import javax.inject.Inject
 
@@ -38,6 +39,18 @@ class UserRepositoryImpl @Inject constructor(
             throw NetworkError
         } catch (e: Exception) {
             throw UnknownError()
+        }
+    }
+
+    override suspend fun getUserById(id: Long) : User{
+        try {
+            val response = userApiService.getUserById(id)
+            checkResponse(response)
+            return response.body() ?: throw Exception()
+        }catch(e: IOException) {
+            throw NetworkError
+        } catch (e: Exception) {
+            throw ru.netology.nework.errors.UnknownError
         }
     }
 

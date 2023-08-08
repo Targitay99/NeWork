@@ -51,7 +51,7 @@ class UserFragment : Fragment() {
                         findNavController().navigateUp()
                     }
                     else -> {
-                        userViewModel.getUserById(user.id)
+ //                       userViewModel.getUserById(user.id)
                         val bundle = Bundle().apply {
                             putLong("id", user.id)
                             putString("avatar", user.avatar)

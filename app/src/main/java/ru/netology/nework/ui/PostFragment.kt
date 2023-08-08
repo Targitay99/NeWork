@@ -117,6 +117,7 @@ class PostsFragment : Fragment() {
             }
 
             override fun openProfile(post: Post) {
+ //               userViewModel.getUserById(post.authorId)
                 val bundle = Bundle().apply {
                     putLong("id", post.authorId)
                     putString("name", post.author)

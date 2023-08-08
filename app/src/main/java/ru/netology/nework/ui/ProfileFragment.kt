@@ -13,6 +13,8 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.job
+import okhttp3.internal.http.hasBody
 import ru.netology.nework.R
 import ru.netology.nework.adapter.UserProfileAdapter
 import ru.netology.nework.api.UserApiService
@@ -44,8 +46,7 @@ class ProfileFragment : Fragment() {
 
     private var twist = false
 
-
-    private val profileTitles = arrayOf(
+      private val profileTitles = arrayOf(
         R.string.title_posts,
         R.string.title_events,
         R.string.title_jobs
@@ -62,22 +63,19 @@ class ProfileFragment : Fragment() {
             container,
             false
         )
-
-
+ //     var user:User? = null
         val viewPagerProfile = binding.viewPagerFragmentProfile
         val tabLayoutProfile = binding.tabLayoutFragmentProfile
         val id = arguments?.getLong("id")
+//      val avatar = arguments?.getString("avatar")
+//      val name = arguments?.getString("name")
 
 
-        val user:User = userViewModel.getUserById(id).apply {
-             
-        }
+        userViewModel.getUserById(id!!)
+        val user = userViewModel.user.value
+        val name = user?.name
+        val avatar = user?.avatar
 
-//       val avatar = arguments?.getString("avatar")
-//       val name = arguments?.getString("name")
-
-        val avatar = user.avatar
-        val name = user.name
 
 
         (activity as AppCompatActivity).supportActionBar?.title = name
