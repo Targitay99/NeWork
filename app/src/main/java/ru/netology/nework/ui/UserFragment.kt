@@ -27,7 +27,7 @@ import ru.netology.nework.viewmodel.UserViewModel
 @AndroidEntryPoint
 class UserFragment : Fragment() {
 
-    private val userViewModel by viewModels<UserViewModel>()
+    private val userViewModel by activityViewModels<UserViewModel>()
     private val eventViewModel by activityViewModels<EventViewModel>()
 
     override fun onCreateView(
@@ -51,11 +51,10 @@ class UserFragment : Fragment() {
                         findNavController().navigateUp()
                     }
                     else -> {
- //                       userViewModel.getUserById(user.id)
+                        userViewModel.getUserById(user.id)
                         val bundle = Bundle().apply {
                             putLong("id", user.id)
-                            putString("avatar", user.avatar)
-                            putString("name", user.name)
+
                         }
                         findNavController().apply {
                             this.popBackStack(R.id.nav_user, true)

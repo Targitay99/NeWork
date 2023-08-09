@@ -37,8 +37,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
               userViewModel.getUserById(user.id)
               val bundle = Bundle().apply {
                   putLong("id", user.id)
-                  putString("name", user.name)
-                  putString("avatar", user.avatar)
               }
               findNavController().apply {
                   this.navigate(R.id.profileFragment, bundle)

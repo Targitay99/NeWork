@@ -98,11 +98,11 @@ class AppActivity : AppCompatActivity() {
         authViewModel.data.observe(this) { auth ->
             invalidateOptionsMenu()
             if (auth.id == 0L) {
-                itemIcon.setIcon(R.drawable.ic_default_user_profile_image)
+                itemIcon.setIcon(R.drawable.ic_avatar)
             } else {
                 userViewModel.getUserById(auth.id)
+                itemIcon.setIcon(R.drawable.ic_default_user_profile_image)
             }
-
             navView.menu.findItem(R.id.profileFragment).setOnMenuItemClickListener {
                 if (!authViewModel.authorized) {
                     findNavController(R.id.nav_host_fragment_activity_app)
@@ -111,11 +111,7 @@ class AppActivity : AppCompatActivity() {
                 } else {
                     userViewModel.getUserById(auth.id)
                     val bundle = Bundle().apply {
-                        userViewModel.user.value?.id?.let { it ->
-                            putLong("id", it)
-                        }
-                        putString("avatar", userViewModel.user.value?.avatar)
-                        putString("name", userViewModel.user.value?.name)
+                            putLong("id", auth.id)
                     }
 
                     findNavController(R.id.nav_host_fragment_activity_app).popBackStack()
@@ -127,24 +123,6 @@ class AppActivity : AppCompatActivity() {
             }
         }
 
-        userViewModel.user.observe(this) {
-            Glide.with(this)
-                .asBitmap()
-                .load("${it.avatar}")
-                .transform(CircleCrop())
-                .into(object : CustomTarget<Bitmap>() {
-
-                    override fun onResourceReady(
-                        resource: Bitmap,
-                        transition: Transition<in Bitmap>?,
-                    ) {
-                        itemIcon.icon = BitmapDrawable(resources, resource)
-                    }
-
-                    override fun onLoadCleared(placeholder: Drawable?) {}
-                }
-                )
-        }
  //       checkGoogleApiAvailability()
     }
 
@@ -160,7 +138,9 @@ class AppActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                findNavController(R.id.nav_host_fragment_activity_app).navigateUp()
+                   findNavController(R.id.nav_host_fragment_activity_app)
+                       .navigate(R.id.nav_posts)
+                true
             }
             R.id.sign_in -> {
                 findNavController(R.id.nav_host_fragment_activity_app)

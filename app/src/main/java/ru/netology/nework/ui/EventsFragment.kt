@@ -150,8 +150,8 @@ class EventsFragment : Fragment() {
 
             override fun onOpenProfile(event: Event) {
                 val bundle = Bundle().apply {
+                    userViewModel.getUserById(event.authorId)
                     putLong("id", event.authorId)
-                    putString("name", event.author)
                 }
                 findNavController().apply {
                     this.popBackStack(R.id.nav_user, true)

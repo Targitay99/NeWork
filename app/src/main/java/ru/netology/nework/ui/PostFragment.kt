@@ -117,10 +117,10 @@ class PostsFragment : Fragment() {
             }
 
             override fun openProfile(post: Post) {
- //               userViewModel.getUserById(post.authorId)
+                userViewModel.getUserById(post.authorId)
                 val bundle = Bundle().apply {
                     putLong("id", post.authorId)
-                    putString("name", post.author)
+//                    putString("name", post.author)
                 }
                 findNavController().apply {
                     this.popBackStack(R.id.nav_user, true)

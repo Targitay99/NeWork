@@ -63,7 +63,7 @@ class ProfileFragment : Fragment() {
             container,
             false
         )
- //     var user:User? = null
+        //     var user:User? = null
         val viewPagerProfile = binding.viewPagerFragmentProfile
         val tabLayoutProfile = binding.tabLayoutFragmentProfile
         val id = arguments?.getLong("id")
@@ -71,12 +71,11 @@ class ProfileFragment : Fragment() {
 //      val name = arguments?.getString("name")
 
 
-        userViewModel.getUserById(id!!)
-        val user = userViewModel.user.value
-        val name = user?.name
-        val avatar = user?.avatar
+        userViewModel.user.observe(viewLifecycleOwner) {
 
-
+            val user = userViewModel.user.value
+            val name = user?.name
+            val avatar = user?.avatar
 
         (activity as AppCompatActivity).supportActionBar?.title = name
 
@@ -102,6 +101,7 @@ class ProfileFragment : Fragment() {
                 .placeholder(R.drawable.ic_default_user_profile_image)
                 .into(imageViewUserAvatarFragmentProfile)
         }
+    }
 
         authViewModel.data.observe(viewLifecycleOwner) {
             if (authViewModel.authorized && id == it.id) {
