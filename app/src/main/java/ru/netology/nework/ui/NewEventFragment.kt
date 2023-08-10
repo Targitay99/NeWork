@@ -21,6 +21,8 @@ import ru.netology.nework.dto.AttachmentType
 import ru.netology.nework.dto.Coordinates
 import ru.netology.nework.dto.Event
 import ru.netology.nework.utils.*
+import ru.netology.nework.utils.Companion.Companion.latitudeNew
+import ru.netology.nework.utils.Companion.Companion.longitude
 import ru.netology.nework.viewmodel.EventViewModel
 import java.util.*
 
@@ -100,7 +102,8 @@ class NewEventFragment : Fragment() {
                     putDouble("long", longitude!!)
                 }
             }
-            findNavController().navigate(R.id.mapFragment, bundle)
+            findNavController().navigate(R.id.action_newEventFragment_to_mapFragment, bundle)
+
         }
 
         binding.editTextDateFragmentNewEvent.setOnClickListener {
@@ -188,6 +191,8 @@ class NewEventFragment : Fragment() {
                 when (menuItem.itemId) {
                     R.id.save -> {
                         fragmentNewEventBinding?.let {
+                            val latitude: Double? = arguments?.latitudeNew
+                            val longitude: Double? = arguments?.longitude
                             if (it.editTextFragmentNewEvent.text.isNullOrBlank()) {
                                 Toast.makeText(
                                     activity,
@@ -202,7 +207,7 @@ class NewEventFragment : Fragment() {
                                         "${it.editTextDateFragmentNewEvent.text} " +
                                                 "${it.editTextTimeFragmentNewEvent.text}"
                                     ),
-                                    Coordinates(latitude, longitude)
+                                    Coordinates(latitude,longitude)
                                 )
                                 eventViewModel.save()
                                 AndroidUtils.hideKeyboard(requireView())

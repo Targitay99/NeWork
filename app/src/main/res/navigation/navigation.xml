@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_nav_events_to_bottomSheetFragment"
             app:destination="@id/bottomSheetFragment" />
+        <action
+            android:id="@+id/action_nav_events_to_mapFragment"
+            app:destination="@id/mapFragment" />
     </fragment>
     <fragment
         android:id="@+id/nav_user"
@@ -101,13 +104,21 @@
         android:id="@+id/newEventFragment"
         android:name="ru.netology.nework.ui.NewEventFragment"
         android:label="@string/fragment_new_event"
-        tools:layout="@layout/fragment_new_event" />
+        tools:layout="@layout/fragment_new_event" >
+        <action
+            android:id="@+id/action_newEventFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newJobFragment"
         android:name="ru.netology.nework.ui.NewJobFragment"
         android:label="@string/newjobfragment" />
     <fragment
         android:id="@+id/mapFragment"
-        android:name="ru.netology.nework.ui.MapFragment"
-        android:label="@string/mapfragment" />
+        android:name="ru.netology.nework.ui.MapsFragment"
+        android:label="@string/mapfragment" >
+        <action
+            android:id="@+id/action_mapFragment_to_newEventFragment"
+            app:destination="@id/newEventFragment" />
+    </fragment>
 </navigation>

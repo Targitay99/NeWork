@@ -20,6 +20,9 @@ import ru.netology.nework.R
 import ru.netology.nework.adapter.*
 import ru.netology.nework.databinding.FragmentEventsBinding
 import ru.netology.nework.dto.Event
+import ru.netology.nework.utils.Companion.Companion.latitude
+import ru.netology.nework.utils.Companion.Companion.longitude
+import ru.netology.nework.utils.Companion.Companion.zoom
 import ru.netology.nework.viewmodel.EventViewModel
 import ru.netology.nework.viewmodel.UserViewModel
 
@@ -78,15 +81,19 @@ class EventsFragment : Fragment() {
             }
 
             override fun onOpenMap(event: Event) {
-                val bundle = Bundle().apply {
-                    event.coordinates?.lat?.let {
-                        putDouble("lat", it)
-                    }
-                    event.coordinates?.long?.let {
-                        putDouble("long", it)
-                    }
+                if (event.coordinates?.lat != null) {
+                    findNavController().navigate(
+                        R.id.action_nav_events_to_mapFragment,
+                        Bundle().apply {
+                            latitude = event.coordinates?.lat ?: 59.945933
+                            longitude = event.coordinates?.long ?: 30.320045
+                            zoom = 17.0f
+                        }
+                    )
+                }else{
+                    Toast.makeText(activity, R.string.error_coordnate, Toast.LENGTH_SHORT)
+                        .show()
                 }
-                findNavController().navigate(R.id.mapFragment, bundle)
             }
 
             override fun onOpenImageAttachment(event: Event) {

@@ -85,4 +85,6 @@
     <string name="fragment_new_event" />
     <string name="newjobfragment">Новая работа</string>
     <string name="mapfragment">Карта</string>
+    <string name="add">Add point</string>
+    <string name="error_coordnate">место не указано</string>
 </resources>
