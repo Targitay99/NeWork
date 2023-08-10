@@ -56,6 +56,7 @@ class MapsFragment : Fragment() , LocationListener, InputListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMapBinding.inflate(layoutInflater)
+        userLocationLayer = MapKitFactory.getInstance().createUserLocationLayer(binding.mapview.mapWindow)
         checkPermission()
         val map = binding.mapview.map
         val latitudeMap = arguments?.latitude ?: 59.945933
@@ -66,7 +67,7 @@ class MapsFragment : Fragment() , LocationListener, InputListener {
             Animation(Animation.Type.SMOOTH, 5F),
             null
         )
-        userLocationLayer = MapKitFactory.getInstance().createUserLocationLayer(binding.mapview.mapWindow)
+
 
         val open = arguments?.getString("open")
         if (open == "newEvent") {

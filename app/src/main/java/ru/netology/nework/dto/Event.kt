@@ -1,5 +1,7 @@
 package ru.netology.nework.dto
 
+import com.google.gson.annotations.SerializedName
+
 
 data class Event(
     val id: Long,
@@ -9,7 +11,7 @@ data class Event(
     val content: String,
     val datetime: String,
     val published: String,
-    val coordinates: Coordinates? = null,
+    @SerializedName("coords") val coordinates: Coordinates? = null,
     val type: EventType,
     val likeOwnerIds: Set<Long> = emptySet(),
     val likedByMe: Boolean = false,
