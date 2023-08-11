@@ -29,25 +29,28 @@ class EventRemoteMediator @Inject constructor(
     ): MediatorResult {
         try {
             val result = when (loadType) {
+
+
                 LoadType.REFRESH -> {
                     eventRemoteKeyDao.max()?.let {
                         eventApiService.getEventAfter(it,state.config.pageSize)
                     }?: eventApiService.getEventLatest(state.config.initialLoadSize)
                 }
+                LoadType.PREPEND -> {
+                    val id = eventRemoteKeyDao.max() ?: return MediatorResult.Success(false)
+                    eventApiService.getEventBefore(id, state.config.pageSize)
+ //                   return MediatorResult.Success(endOfPaginationReached = false)
+                }
+
                 LoadType.APPEND -> {
-                    val id =
-                        eventRemoteKeyDao.min() ?: return MediatorResult.Success(
-                            false
-                        )
+                    val id = eventRemoteKeyDao.min() ?: return MediatorResult.Success(false)
                     eventApiService.getEventBefore(id, state.config.pageSize)
                 }
-                LoadType.PREPEND -> {
-                    return MediatorResult.Success(endOfPaginationReached = false)
-                }
+
             }
 
             if (!result.isSuccessful) {
-                throw ApiError(result.message())
+//                throw ApiError(result.message())
             }
 
             if (result.body().isNullOrEmpty())
@@ -58,6 +61,7 @@ class EventRemoteMediator @Inject constructor(
             appDb.withTransaction {
                 when (loadType) {
                     LoadType.REFRESH -> {
+ //                       eventDao.removeAll()
                         eventRemoteKeyDao.insert(
                             EventRemoteKeyEntity(
                                 EventRemoteKeyEntity.KeyType.AFTER,
@@ -75,20 +79,20 @@ class EventRemoteMediator @Inject constructor(
                         }
                     }
 
-                    LoadType.APPEND -> {
-                        eventRemoteKeyDao.insert(
-                            EventRemoteKeyEntity(
-                                EventRemoteKeyEntity.KeyType.BEFORE,
-                                body.last().id,
-                            ),
-                        )
-                    }
-
                     LoadType.PREPEND -> {
                         eventRemoteKeyDao.insert(
                             EventRemoteKeyEntity(
                                 EventRemoteKeyEntity.KeyType.AFTER,
                                 body.first().id,
+                            ),
+                        )
+                    }
+
+                    LoadType.APPEND -> {
+                        eventRemoteKeyDao.insert(
+                            EventRemoteKeyEntity(
+                                EventRemoteKeyEntity.KeyType.BEFORE,
+                                body.last().id,
                             ),
                         )
                     }

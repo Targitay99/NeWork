@@ -44,7 +44,7 @@ class SignUpFragment : Fragment() {
 
         viewModel.data.observe(viewLifecycleOwner) {
             appAuth.setAuth(it.id, it.token)
-            findNavController().navigate(R.id.action_signInFragment_to_appActivity)
+            findNavController().navigate(R.id.action_signUpFragment_to_appActivity)
         }
 
         with(binding) {

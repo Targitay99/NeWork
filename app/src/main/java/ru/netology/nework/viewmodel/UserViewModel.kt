@@ -8,7 +8,6 @@ import ru.netology.nework.api.UserApiService
 import ru.netology.nework.dto.User
 import ru.netology.nework.entity.UserEntity
 import ru.netology.nework.model.StateModel
-import ru.netology.nework.model.UserModelState
 import ru.netology.nework.repository.UserRepository
 import javax.inject.Inject
 

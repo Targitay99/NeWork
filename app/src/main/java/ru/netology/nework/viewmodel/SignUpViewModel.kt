@@ -60,8 +60,8 @@ class SignUpViewModel @Inject constructor(
                     throw ApiError(response.message())
                 }
                 val body = response.body() ?: throw ApiError(response.message())
-                data.value = Token(body.id, body.token)
                 _dataState.postValue(StateModel())
+                data.value = Token(body.id, body.token)
             } catch (e: IOException) {
                 _dataState.postValue(StateModel(error = true))
             } catch (e: Exception) {

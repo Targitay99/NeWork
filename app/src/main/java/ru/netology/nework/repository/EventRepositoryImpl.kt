@@ -30,16 +30,16 @@ class EventRepositoryImpl @Inject constructor(
     @OptIn(ExperimentalPagingApi::class)
     override val data: Flow<PagingData<Event>> = Pager(
         config = PagingConfig(pageSize = 10, enablePlaceholders = false),
-        pagingSourceFactory = { eventDao.getPagingSource() },
         remoteMediator = EventRemoteMediator(
             eventDao,
             eventApiService,
             eventRemoteKeyDao,
             appDb,
-        )
+        ),
+        pagingSourceFactory = { eventDao.getPagingSource() },
     ).flow
         .map {
-            it.map{ entity ->
+            it.map { entity ->
                 entity.toDto()
             }
         }
