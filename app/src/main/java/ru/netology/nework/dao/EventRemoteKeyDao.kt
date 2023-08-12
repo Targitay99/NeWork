@@ -22,8 +22,8 @@ interface EventRemoteKeyDao {
     suspend fun removeAll()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(eventRemoteKeyEntity: EventRemoteKeyEntity)
+    suspend fun insert(key: EventRemoteKeyEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(eventRemoteKeyEntity: List<EventRemoteKeyEntity>)
+    suspend fun insert(keys: List<EventRemoteKeyEntity>)
 }

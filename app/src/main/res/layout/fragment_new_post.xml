@@ -75,21 +75,6 @@
 
     </ScrollView>
 
-    <!--    <com.google.android.material.bottomappbar.BottomAppBar-->
-    <!--        android:id="@+id/bottom_app_bar_fragment_new_post"-->
-    <!--        style="@style/Widget.MaterialComponents.BottomAppBar"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_gravity="bottom"-->
-    <!--        android:backgroundTint="@color/purple_500"-->
-    <!--        tools:ignore="BottomAppBar" />-->
-
-    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-    <!--        android:id="@+id/fab_ok"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:layout_anchor="@id/bottom_app_bar_fragment_new_post"-->
-    <!--        app:srcCompat="@drawable/ic_baseline_check_24" />-->
 
     <LinearLayout
         android:id="@+id/bottom_app_bar_fragment_new_post"

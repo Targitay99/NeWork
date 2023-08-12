@@ -14,10 +14,13 @@ interface EventDao {
     fun getPagingSource(): PagingSource<Int, EventEntity>
 
     @Query("SELECT * FROM EventEntity WHERE authorId = :authorId ORDER BY id DESC")
-    fun getPagingSource(authorId: Long): PagingSource<Int, EventEntity>
+    fun getPagingSourceByAuthorId(authorId: Long): PagingSource<Int, EventEntity>
+
+
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertEvent(entity: EventEntity)
+    suspend fun insertEvent(event: EventEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEvents(events: List<EventEntity>)

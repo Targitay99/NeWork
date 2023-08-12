@@ -19,8 +19,6 @@ sealed class AppError(message: String) : Exception(message) {
 
 class ApiError(message: String) : AppError(message)
 
-//class ApiError2(status:Int, code: String, val responseBody: ResponseBody?) : AppError(status=status,code=code)
-
 
 object NetworkError : AppError("Network Error")
 

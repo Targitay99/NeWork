@@ -67,8 +67,6 @@ class ProfileFragment : Fragment() {
         val viewPagerProfile = binding.viewPagerFragmentProfile
         val tabLayoutProfile = binding.tabLayoutFragmentProfile
         val id = arguments?.getLong("id")
-//      val avatar = arguments?.getString("avatar")
-//      val name = arguments?.getString("name")
 
 
         userViewModel.user.observe(viewLifecycleOwner) {

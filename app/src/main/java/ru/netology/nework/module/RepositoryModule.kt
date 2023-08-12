@@ -36,24 +36,10 @@ interface RepositoryModule {
     @Singleton
     @Binds
     fun bindsJobRepository(impl: JobRepositoryImpl): JobRepository
-
 }
-
-//    @Singleton
-//    @Binds
-//    fun bindsSignInRepository(impl: SignInRepositoryImpl): SignInRepository
-//
-//    @Singleton
-//    @Binds
-//    fun bindsSignUpRepository(impl: SignUpRepositoryImpl): SignUpRepository
 
 fun checkResponse(response: Response<out Any>) {
     if (!response.isSuccessful) {
         throw ApiError(response.message())
-    }
-    fun checkResponse2 (response: Response<out Any>) {
-        if (!response.isSuccessful) {
- //           throw ApiError2(response.code(), response.message(), response.errorBody())
-        }
     }
 }

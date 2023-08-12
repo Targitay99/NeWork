@@ -19,9 +19,8 @@ import ru.netology.nework.R
 import ru.netology.nework.adapter.OnPostInteractionListener
 import ru.netology.nework.adapter.LoadingStateAdapter
 import ru.netology.nework.adapter.PostsAdapter
-import ru.netology.nework.databinding.FragmentPostBinding
+import ru.netology.nework.databinding.FragmentPostsBinding
 import ru.netology.nework.dto.Post
-import ru.netology.nework.dto.User
 import ru.netology.nework.viewmodel.AuthViewModel
 import ru.netology.nework.viewmodel.PostViewModel
 import ru.netology.nework.viewmodel.UserViewModel
@@ -39,7 +38,7 @@ class PostsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        val binding = FragmentPostBinding.inflate(
+        val binding = FragmentPostsBinding.inflate(
             inflater,
             container,
             false

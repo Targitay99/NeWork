@@ -47,18 +47,6 @@ class UserViewModel @Inject constructor(
         }
     }
 
-//    fun getUserById(id: Long) = viewModelScope.launch {
-//        _dataState.postValue(StateModel(loading = true))
-//        try {
-//            val response = userApiService.getUserById(id)
-//            if (response.isSuccessful) {
-//                _user.value = response.body()
-//            }
-//            _dataState.postValue(StateModel())
-//        } catch (e: Exception) {
-//            _dataState.postValue(StateModel(error = true))
-//        }
-//    }
 fun getUserById(id: Long) = viewModelScope.launch {
     try {
         _dataState.value = StateModel(loading = true)

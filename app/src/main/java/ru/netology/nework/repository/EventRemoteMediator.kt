@@ -37,20 +37,19 @@ class EventRemoteMediator @Inject constructor(
                     }?: eventApiService.getEventLatest(state.config.initialLoadSize)
                 }
                 LoadType.PREPEND -> {
-                    val id = eventRemoteKeyDao.max() ?: return MediatorResult.Success(false)
-                    eventApiService.getEventBefore(id, state.config.pageSize)
- //                   return MediatorResult.Success(endOfPaginationReached = false)
+ //                   val id = eventRemoteKeyDao.max() ?: return MediatorResult.Success(false)
+ //                   eventApiService.getEventBefore(id, state.config.pageSize)
+                    return MediatorResult.Success(endOfPaginationReached = false)
                 }
 
                 LoadType.APPEND -> {
                     val id = eventRemoteKeyDao.min() ?: return MediatorResult.Success(false)
                     eventApiService.getEventBefore(id, state.config.pageSize)
                 }
-
             }
 
             if (!result.isSuccessful) {
-//                throw ApiError(result.message())
+                throw ApiError(result.message())
             }
 
             if (result.body().isNullOrEmpty())

@@ -146,22 +146,12 @@ class MapsFragment : Fragment() , LocationListener, InputListener {
     }
 
     override fun onLocationChanged(location: Location) {
-        TODO("Not yet implemented")
     }
 
     override fun onMapTap(p0: Map, p1: Point) {
-        TODO("Not yet implemented")
     }
 
     override fun onMapLongTap(p0: Map, p1: Point) {
-        TODO("Not yet implemented")
     }
 
 }
-
-
-//open = arguments?.getString("open")
-//position =
-//if (open == "newEvent") {
-//    Point(59.945933, 30.320045)
-//} else Point(lat, long)

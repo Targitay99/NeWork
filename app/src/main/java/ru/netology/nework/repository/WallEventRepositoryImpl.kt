@@ -51,7 +51,7 @@ class WallEventRepositoryImpl @Inject constructor(
             appDb = appDb,
             authorId = userId,
         ),
-        pagingSourceFactory = { eventDao.getPagingSource(userId) }
+        pagingSourceFactory = { eventDao.getPagingSourceByAuthorId(userId) }
     ).flow
         .map {
             it.map(EventEntity::toDto)
