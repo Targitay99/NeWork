@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -27,7 +26,7 @@ class NewJobFragment : Fragment() {
 
     private val jobViewModel by activityViewModels<JobViewModel>()
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,11 +41,6 @@ class NewJobFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title =
             context?.getString(R.string.title_job)
 
-        binding.editTextStartFragmentNewJob.setOnClickListener {
-            selectDateDialog(binding.editTextStartFragmentNewJob, requireContext())
-            val startDate = binding.editTextStartFragmentNewJob.text.toString()
-            jobViewModel.startDate(startDate)
-        }
 
         binding.editTextFinishFragmentNewJob.setOnClickListener {
             selectDateDialog(binding.editTextFinishFragmentNewJob, requireContext())

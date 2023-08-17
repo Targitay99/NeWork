@@ -20,15 +20,6 @@ object AndroidUtils {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun convertDateAndTime(dateAndTime: String): String {
-        return if (dateAndTime == "") {
-            ""
-        } else {
-            val parsedDate = LocalDateTime.parse(dateAndTime, DateTimeFormatter.ISO_DATE_TIME)
-            return parsedDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"))
-        }
-    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun convertDate(date: String): String {
@@ -40,7 +31,7 @@ object AndroidUtils {
         }
     }
 
-    @SuppressLint("NewApi")
+
     fun selectDateDialog(editText: EditText?, context: Context) {
         val currentDateTime = Calendar.getInstance()
         val startYear = currentDateTime.get(Calendar.YEAR)
@@ -51,27 +42,10 @@ object AndroidUtils {
             val pickedDateTime = Calendar.getInstance()
             pickedDateTime.set(year, month, dayOfMonth)
             val result = GregorianCalendar(year, month, dayOfMonth).time
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.uuu'Z'", Locale.getDefault())
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd’T’HH:mm:ss’Z’", Locale.getDefault())
             editText?.setText(dateFormat.format(result))
         }, startYear, startMonth, startDay).show()
     }
 
-    fun selectDateTimeDialog(editText: EditText?, context: Context) {
-        val currentDateTime = Calendar.getInstance()
-        val startYear = currentDateTime.get(Calendar.YEAR)
-        val startMonth = currentDateTime.get(Calendar.MONTH)
-        val startDay = currentDateTime.get(Calendar.DAY_OF_MONTH)
-        val startHour = currentDateTime.get(Calendar.HOUR_OF_DAY)
-        val startMinute = currentDateTime.get(Calendar.MINUTE)
 
-        DatePickerDialog(context, DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-            TimePickerDialog(context, TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
-                val pickedDateTime = Calendar.getInstance()
-                pickedDateTime.set(year, month, dayOfMonth, hourOfDay, minute)
-                val result = GregorianCalendar(year, month, dayOfMonth, hourOfDay, minute).time
-                val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
-                editText?.setText(dateFormat.format(result))
-            }, startHour, startMinute, false).show()
-        }, startYear, startMonth, startDay).show()
-    }
 }

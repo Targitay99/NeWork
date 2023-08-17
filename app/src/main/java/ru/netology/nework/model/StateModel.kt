@@ -7,3 +7,9 @@ data class StateModel(
     val loginError: Boolean = false,
     val registrationError: Boolean = false,
 )
+
+//data class LoginFormState(
+//    val loginError: Boolean = false,
+//    val registrationError: Boolean = false,
+//)
+

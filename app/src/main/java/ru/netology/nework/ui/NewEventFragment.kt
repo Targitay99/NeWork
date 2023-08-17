@@ -43,8 +43,8 @@ class NewEventFragment : Fragment() {
     private var latitude: Double? = null
     private var longitude: Double? = null
 
-    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -21,7 +21,6 @@ import ru.netology.nework.viewmodel.AuthViewModel
 import ru.netology.nework.viewmodel.UserViewModel
 import javax.inject.Inject
 
-@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class AppActivity : AppCompatActivity() {
 
@@ -35,7 +34,7 @@ class AppActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAppBinding
 
-    @Suppress("UNUSED_EXPRESSION")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

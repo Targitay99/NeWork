@@ -13,7 +13,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import ru.netology.nework.R
 import ru.netology.nework.databinding.FragmentImageAttachmentBinding
 
-@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class ImageAttachmentFragment : Fragment() {
 

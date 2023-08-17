@@ -26,6 +26,7 @@ android {
     }
 
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
@@ -119,4 +120,5 @@ dependencies {
     implementation "de.hdodenhof:circleimageview:$circleimageview_version"
     implementation "com.google.android.exoplayer:exoplayer:2.18.5"
     implementation "com.yandex.android:maps.mobile:$yandexmapsmobile_version"
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
 }

@@ -28,13 +28,14 @@ class PostRepositoryImpl @Inject constructor(
     @OptIn(ExperimentalPagingApi::class)
     override val data: Flow<PagingData<Post>> = Pager(
         config = PagingConfig(pageSize = 10, enablePlaceholders = false),
-        pagingSourceFactory = { postDao.getPagingSource() },
+
         remoteMediator = PostRemoteMediator(
             postDao,
             postApiService,
             postRemoteKeyDao,
             appDb,
-        )
+        ),
+        pagingSourceFactory = { postDao.getPagingSource() }
     ).flow
         .map {
             it.map(PostEntity::toDto)

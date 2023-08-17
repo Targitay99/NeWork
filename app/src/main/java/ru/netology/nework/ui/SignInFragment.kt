@@ -18,7 +18,6 @@ import ru.netology.nework.utils.AndroidUtils.hideKeyboard
 import ru.netology.nework.viewmodel.SignInViewModel
 import javax.inject.Inject
 
-@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class SignInFragment : Fragment() {
 

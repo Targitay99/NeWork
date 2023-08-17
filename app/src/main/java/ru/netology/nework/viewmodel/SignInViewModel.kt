@@ -24,6 +24,7 @@ class SignInViewModel @Inject constructor(
     val dataState: LiveData<StateModel>
         get() = _dataState
 
+
     fun authorizationUser(login: String, password: String) {
         viewModelScope.launch {
             _dataState.postValue(StateModel(loading = true))
