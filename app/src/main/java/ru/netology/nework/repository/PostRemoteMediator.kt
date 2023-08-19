@@ -30,7 +30,6 @@ class PostRemoteMediator(
         try {
             val result = when (loadType) {
                 REFRESH -> {
-                    postRemoteKeyDao.removeAll()
                     postRemoteKeyDao.max()?.let{
                         postApiService.getPostAfter(it, state.config.pageSize)
                     } ?: postApiService.getPostLatest(state.config.initialLoadSize)
