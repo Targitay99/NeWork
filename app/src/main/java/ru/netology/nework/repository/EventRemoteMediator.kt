@@ -31,6 +31,7 @@ class EventRemoteMediator @Inject constructor(
             val result = when (loadType) {
 
                 LoadType.REFRESH -> {
+                    eventRemoteKeyDao.removeAll()
                     eventRemoteKeyDao.max()?.let {
                         eventApiService.getEventAfter(it,state.config.pageSize)
                     }?: eventApiService.getEventLatest(state.config.initialLoadSize)
@@ -57,6 +58,8 @@ class EventRemoteMediator @Inject constructor(
             appDb.withTransaction {
                 when (loadType) {
                     LoadType.REFRESH -> {
+                        eventDao.removeAll()
+                        eventRemoteKeyDao.removeAll()
                         eventRemoteKeyDao.insert(
                             EventRemoteKeyEntity(
                                 EventRemoteKeyEntity.KeyType.AFTER,
@@ -72,7 +75,6 @@ class EventRemoteMediator @Inject constructor(
                                 )
                             )
                         }
-                        eventDao.removeAll()
                     }
 
                     LoadType.PREPEND -> {

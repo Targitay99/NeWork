@@ -75,6 +75,7 @@ class WallEventRemoteMediator(
                             )
                         }
                         eventDao.removeAll()
+                        eventRemoteKeyDao.removeAll()
                     }
 
                     LoadType.APPEND -> {
