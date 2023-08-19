@@ -82,7 +82,7 @@ class JobViewModel @Inject constructor(
                     _dataState.postValue(StateModel())
                     _jobCreated.value = Unit
                 } catch (e: Exception) {
- //                   _dataState.postValue(StateModel(error = true))
+                    _dataState.postValue(StateModel(error = true))
 
                 }
             }
@@ -137,10 +137,6 @@ class JobViewModel @Inject constructor(
                 _dataState.postValue(StateModel(error = true))
             }
         }
-
-    fun startDate(date: String) {
-        edited.value = edited.value?.copy(start = date)
-    }
 
     fun finishDate(date: String) {
         edited.value = edited.value?.copy(finish = date)

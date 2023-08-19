@@ -63,7 +63,6 @@ class ProfileFragment : Fragment() {
             container,
             false
         )
-        //     var user:User? = null
         val viewPagerProfile = binding.viewPagerFragmentProfile
         val tabLayoutProfile = binding.tabLayoutFragmentProfile
         val id = arguments?.getLong("id")

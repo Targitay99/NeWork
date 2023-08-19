@@ -25,19 +25,6 @@ fun formatToDate(value: String?): String {
     return transformation.format(Instant.parse(value))
 }
 
-@SuppressLint("SimpleDateFormat")
-fun epochSecToDate(second: Long): String {
-    val date = Date(second * 1_000)
-    val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
-    return simpleDateFormat.format(date)
-}
-
-@RequiresApi(Build.VERSION_CODES.O)
-fun dateToEpochSec(string: String?): Long? {
-    return if (string.isNullOrBlank()) null else LocalDate.parse(string)
-        .atStartOfDay(ZoneId.of("Europe/Moscow")).toEpochSecond()
-}
-
 fun pickDate(editText: EditText?, context: Context?) {
     val datePicker = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
         calendar[Calendar.YEAR] = year

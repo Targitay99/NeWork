@@ -7,8 +7,6 @@
     <string name="title_profile">Profile</string>
     <string name="description_post_author_avatar">Avatar</string>
     <string name="description_post_attachment">Attachment</string>
-    <string name="description_background_video" />
-    <string name="description_play" />
     <string name="description_share" />
     <string name="description_view" />
     <string name="empty_posts" />
@@ -18,13 +16,10 @@
     <string name="error_auth">You are not authorized</string>
     <string name="no_likers">No likes Owners</string>
     <string name="no_mentions">No Mentions</string>
-    <string name="no_play">No play</string>
     <string name="error_loading">Loading problem! Please check network connection.</string>
     <string name="sign_in">sign_in</string>
     <string name="sign_up">sign_up</string>
     <string name="sign_out">sign_out</string>
-    <string name="google_play_unavailable">Google api unavailable</string>
-    <string name="description_splash" />
     <string name="empty_events">There are no events.\\nIf you create a new event, it will appear here</string>
     <string name="description_event_author_avatar" />
     <string name="description_event_attachment" />
@@ -43,7 +38,6 @@
     <string name="error_field_required">Fields must be filled</string>
     <string name="error_password">" Password mismatch"</string>
     <string name="title_jobs">Jobs</string>
-    <string name="description_fab_add" />
     <string name="title_event">Event</string>
     <string name="title_job">Job</string>
     <string name="text_job_name">Company :</string>
@@ -69,7 +63,6 @@
     <string name="set_point_button">Set point</string>
     <string name="location_button">Location</string>
     <string name="no_location">No access to location</string>
-    <string name="title_map">Map</string>
     <string name="post">Post</string>
     <string name="fragment_events">Event</string>
     <string name="fragment_user">Users</string>

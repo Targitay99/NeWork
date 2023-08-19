@@ -1,6 +1,5 @@
 package ru.netology.nework.errors
 
-import okhttp3.ResponseBody
 import java.io.IOException
 import java.sql.SQLException
 

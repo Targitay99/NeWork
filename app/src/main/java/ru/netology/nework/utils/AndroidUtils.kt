@@ -30,8 +30,6 @@ object AndroidUtils {
             return parsedDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
         }
     }
-
-
     fun selectDateDialog(editText: EditText?, context: Context) {
         val currentDateTime = Calendar.getInstance()
         val startYear = currentDateTime.get(Calendar.YEAR)

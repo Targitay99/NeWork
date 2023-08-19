@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="like">like</string>
-    <string name="mention">Слушать</string>
     <string name="speakers">Спикер</string>
     <string name="participate">Участвовать</string>
 </resources>

@@ -16,7 +16,4 @@ class MediaHelper(view: StyledPlayerView, url: String) {
         player.setMediaItem(mediaItem)
         player.prepare()
     }
-    fun onPlay() {
-        player.play()
-    }
 }

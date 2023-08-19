@@ -151,16 +151,6 @@ class PostViewModel @Inject constructor(
         }
     }
 
-    fun changeMentionIds(id: Long) {
-        edited.value?.let {
-            if (edited.value?.mentionIds?.contains(id) == false) {
-                edited.value = edited.value?.copy(
-                    mentionIds = it.mentionIds.plus(id)
-                )
-            }
-        }
-    }
-
     override fun onCleared() {
         super.onCleared()
         scope.cancel()

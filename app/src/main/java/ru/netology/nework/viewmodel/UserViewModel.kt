@@ -56,9 +56,6 @@ fun getUserById(id: Long) = viewModelScope.launch {
         _dataState.value = StateModel(error = true)
     }
 }
-
-
-
     fun getUsersIds(set: Set<Long>) =
         viewModelScope.launch {
             _userIds.value = set

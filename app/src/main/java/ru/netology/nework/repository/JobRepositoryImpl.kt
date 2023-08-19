@@ -31,7 +31,6 @@ class JobRepositoryImpl @Inject constructor(
 
     override suspend fun saveJob(job: Job) {
         try {
-//            jobDao.saveJob(JobEntity.fromDto(job))
             val response = jobApiService.saveJob(job)
             if (!response.isSuccessful) {
                 throw ApiError(response.message())

@@ -7,8 +7,6 @@
     <string name="title_profile">Профиль</string>
     <string name="description_post_author_avatar">Аватар</string>
     <string name="description_post_attachment">Вложение</string>
-    <string name="description_background_video" />
-    <string name="description_play" />
     <string name="description_share" />
     <string name="description_view" />
     <string name="empty_posts" />
@@ -18,13 +16,10 @@
     <string name="error_auth">Вы не авторизованы</string>
     <string name="no_likers">No likes Owners</string>
     <string name="no_mentions">Нет упоминаний</string>
-    <string name="no_play">No play</string>
     <string name="error_loading">Loading problem! Please check network connection.</string>
     <string name="sign_in">Авторизация</string>
     <string name="sign_up">Регистрация</string>
     <string name="sign_out">Выход</string>
-    <string name="google_play_unavailable">Google api unavailable</string>
-    <string name="description_splash" />
     <string name="empty_events">There are no events.\\nIf you create a new event, it will appear here</string>
     <string name="description_event_author_avatar" />
     <string name="description_event_attachment" />
@@ -43,7 +38,6 @@
     <string name="error_field_required">Поля должны быть заполненны</string>
     <string name="error_password">Несоответствие пароля</string>
     <string name="title_jobs">Работа</string>
-    <string name="description_fab_add" />
     <string name="title_post">Пост</string>
     <string name="title_event">Событие</string>
     <string name="title_job">Работа</string>
@@ -72,7 +66,6 @@
     <string name="set_point_button">Выбор точки</string>
     <string name="location_button">Место</string>
     <string name="no_location">No access to location</string>
-    <string name="title_map">Карта</string>
     <string name="post">Пост</string>
     <string name="fragment_events">Событие</string>
     <string name="fragment_user">Пользователь</string>

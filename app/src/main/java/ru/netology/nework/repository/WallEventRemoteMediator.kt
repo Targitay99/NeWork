@@ -33,6 +33,7 @@ class WallEventRemoteMediator(
                 LoadType.REFRESH -> {
                     eventApiService.getEventLatest(state.config.pageSize)
                 }
+
                 LoadType.APPEND -> {
                     val id =
                         eventRemoteKeyDao.min() ?: return MediatorResult.Success(
@@ -40,13 +41,14 @@ class WallEventRemoteMediator(
                         )
                     eventApiService.getEventBefore(id, state.config.pageSize)
                 }
+
                 LoadType.PREPEND -> {
                     return MediatorResult.Success(true)
                 }
             }
 
             if (!result.isSuccessful) {
-                //               throw ApiError(result.message())
+                throw ApiError(result.message())
             }
 
             if (result.body().isNullOrEmpty())

@@ -3,7 +3,6 @@ package ru.netology.nework.utils
 import androidx.room.TypeConverter
 import ru.netology.nework.dto.AttachmentType
 
-
 class Converters {
 
     @TypeConverter
