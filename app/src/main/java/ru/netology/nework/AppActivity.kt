@@ -54,7 +54,6 @@ class AppActivity : AppCompatActivity() {
                 R.id.nav_posts,
                 R.id.nav_user,
                 R.id.nav_events,
-     //           R.id.profileFragment,
                 -> {
                     navView.visibility = View.VISIBLE
                 }

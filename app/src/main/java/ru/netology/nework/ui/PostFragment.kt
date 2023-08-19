@@ -119,7 +119,6 @@ class PostsFragment : Fragment() {
                 userViewModel.getUserById(post.authorId)
                 val bundle = Bundle().apply {
                     putLong("id", post.authorId)
-//                    putString("name", post.author)
                 }
                 findNavController().apply {
                     this.popBackStack(R.id.nav_user, true)

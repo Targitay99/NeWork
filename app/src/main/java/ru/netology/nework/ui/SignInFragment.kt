@@ -62,16 +62,16 @@ class SignInFragment : Fragment() {
         }
 
         viewModel.dataState.observe(viewLifecycleOwner) { state ->
-            when {
-                state.loginError -> {
-                    binding.textFieldPassword.error = getString(R.string.error_login)
-                }
-                state.error -> {
-                    Toast.makeText(context, R.string.error_loading, Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
+
+           if (state.error) {
+               Toast.makeText(context, R.string.error_loading, Toast.LENGTH_SHORT)
+                .show()
+        }
             binding.progressBarFragmentSignIn.isVisible = state.loading
+        }
+
+        viewModel.dataLoginState.observe(viewLifecycleOwner){state->
+            if (state.loginError) binding.textFieldPassword.error = getString(R.string.error_login)
         }
 
         return binding.root

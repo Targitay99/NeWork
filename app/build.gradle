@@ -81,6 +81,7 @@ dependencies {
     def play_services_base_version = "18.1.0"
     def circleimageview_version = "3.1.0"
     def yandexmapsmobile_version = "4.1.0-lite"
+    def desugar_version = "2.0.3"
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "androidx.core:core-ktx:$core_version"
@@ -120,5 +121,5 @@ dependencies {
     implementation "de.hdodenhof:circleimageview:$circleimageview_version"
     implementation "com.google.android.exoplayer:exoplayer:2.18.5"
     implementation "com.yandex.android:maps.mobile:$yandexmapsmobile_version"
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$desugar_version"
 }

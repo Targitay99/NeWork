@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 import ru.netology.nework.api.UserApiService
 import ru.netology.nework.dto.Token
 import ru.netology.nework.errors.ApiError
+import ru.netology.nework.model.LoginStateModel
 import ru.netology.nework.model.StateModel
 import java.io.IOException
 import javax.inject.Inject
@@ -25,6 +26,11 @@ class SignInViewModel @Inject constructor(
         get() = _dataState
 
 
+    private val _dataLoginState = MutableLiveData<LoginStateModel>()
+    val dataLoginState: LiveData<LoginStateModel>
+        get() = _dataLoginState
+
+
     fun authorizationUser(login: String, password: String) {
         viewModelScope.launch {
             _dataState.postValue(StateModel(loading = true))
@@ -39,7 +45,7 @@ class SignInViewModel @Inject constructor(
             } catch (e: IOException) {
                 _dataState.postValue(StateModel(error = true))
             } catch (e: Exception) {
-                _dataState.postValue(StateModel(loginError = true))
+                _dataLoginState.postValue(LoginStateModel(loginError = true))
             }
         }
     }
